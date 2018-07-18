@@ -1,0 +1,2449 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="scripts/ajax.js?v=1.02"></script>
+<style>
+html, body {margin: 0;padding: 0;border: 0;outline: 0;vertical-align: baseline;background-color:#15151b;color:black;height:100vh;overflow:hidden;user-select:none;}
+.absolute{position:absolute;}
+.relative{position:relative;}
+.nodisplay {display:none;}
+.adjust {text-align:justify;}
+
+@font-face {
+   font-family: 'Open Sans Light';
+   font-style: normal;
+   font-weight: 300;
+   src:url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTRa1RVmPjeKy21_GQJaLlJI.woff) format('woff');
+}
+#top {height:70px;line-height:70px;position:relative;top:0;left:0;width:100%;background-color:#121216;z-index:9999;}
+#title {color:white;left:21vw;position:absolute;width:75vw;font-family:'Open Sans',sans-serif;font-size:4.26vw;font-weight:600;}
+#handle {position:absolute;left:5vw;top:26px;width:8.5vw;height:18px;background-image:url(images/handle.png)}
+#bottom {position:absolute;left:0;top:70px;width:100%;height:calc(100% - 70px);background-color:#15151b;transition:all 0.3s ease-out;}
+#leftmenu {position:absolute;z-index:999;top:0;width:18.5vw;height:100%;left:-18.5vw;background-color:#100f14;transition:all 0.3s ease-out;}
+#leftmenubg {position:absolute;z-index:998;top:0;width:100%;height:100%;left:0;background-color:rgba(0,0,0,0.35);opacity:0;display:none;}
+.navbtn1_reg {position:absolute;left:0;top:90px;width:18.5vw;height:18.5vw;background-position:center center;background-repeat:no-repeat;cursor:pointer;background-image:url('images/icon_home_hot.png');opacity:0.35;}
+.navbtn1_sel {position:absolute;left:0;top:90px;width:18.5vw;height:18.5vw;background-position:center center;background-repeat:no-repeat;cursor:pointer;background-image:url('images/icon_home_hot.png');opacity:1;}
+.navbtn2_reg {position:absolute;left:0;top:calc(90px + 18.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_boiler_hot.png');opacity:0.35;}
+.navbtn2_sel {position:absolute;left:0;top:calc(90px + 18.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_boiler_hot.png');opacity:1;}
+.navbtn7_reg {position:absolute;left:0;top:calc(90px + 37vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_fuel_hot.png');opacity:0.35;}
+.navbtn7_sel {position:absolute;left:0;top:calc(90px + 37vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_fuel_hot.png');opacity:1;}
+.navbtn3_reg {position:absolute;left:0;top:calc(90px + 55.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_gear_hot.png');opacity:0.35;}
+.navbtn3_sel {position:absolute;left:0;top:calc(90px + 55.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_gear_hot.png');opacity:1;}
+.navbtn5_reg {position:absolute;left:0;top:calc(100vh - 37vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_language_hot.png?v=2');opacity:0.35;}
+.navbtn5_sel {position:absolute;left:0;top:calc(100vh - 37vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_language_hot.png?v=2');opacity:1;}
+.navbtn6_reg {position:absolute;left:0;top:calc(100vh - 18.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_info_hot.png');opacity:0.35;}
+.navbtn6_sel {position:absolute;left:0;top:calc(100vh - 18.5vw);width:18.5vw;height:18.5vw;cursor:pointer;background-position:center center;background-repeat:no-repeat;background-image:url('images/icon_info_hot.png');opacity:1;}
+.handle_hot {position:absolute;left:5vw;top:26px;width:8.5vw;height:18px;background-image:url(images/handle_hot.png)}
+#tab1 {position:absolute;left:0;top:0;width:100%;height:100%;background-image:url('images/bg1.jpg?v=3.01');background-size:100% 100%;}
+#tab2 {position:absolute;left:0;top:0;width:100%;height:100%;background-image:url('images/bg2.jpg?v=1.00');background-size:100% 100%;}
+#tab5 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_2 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_3 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_4 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_5 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_6 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_7 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_8 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_9 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+#tab6_10 {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#15161b;}
+.gauge0_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_0ovr12.png);}
+.gauge1_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_1ovr12.png);}
+.gauge2_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_2ovr12.png);}
+.gauge3_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_3ovr12.png);}
+.gauge4_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_4ovr12.png);}
+.gauge5_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_5ovr12.png);}
+.gauge6_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_6ovr12.png);}
+.gauge7_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_7ovr12.png);}
+.gauge8_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_8ovr12.png);}
+.gauge9_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_9ovr12.png);}
+.gauge10_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_10ovr12.png);}
+.gauge11_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_11ovr12.png);}
+.gauge12_12 {position:absolute;left:14vw;top:8vh;width:69vw;height:69vw;background-size:100% 100%;background-image:url(images/chamber_12ovr12.png);}
+.conn {position:absolute;left:67vw;width:6.5vw;height:6.5vw;top:1.86vw;background-size:100% 100%;background-image:url(images/icon_connection.png);display:none;}
+.conne {position:absolute;left:67vw;width:6.5vw;height:6.5vw;top:1.86vw;background-size:100% 100%;background-image:url(images/icon_connection_na.png);display:none;}
+.midbtn {width:37vw;height:14%;background-image:url(images/button.png?v=2);position:absolute;left:31.5vw;top:79%;transition:all 0.3s ease-out;opacity:1;background-size:100% 100%;}
+.chamber {width:69vw;height:69vw;background-image:url(images/chamber.png?v=2);background-size:100% 100%;position:absolute;left:14vw;top:11vh;transition:all 0.3s ease-out;opacity:1;}
+.chamberpop {width:69vw;height:69vw;background-image:url(images/chamberpop.png);background-size:100% 100%;position:absolute;left:14vw;top:11vh;transition:opacity 0.3s ease-out;opacity:0;display:none;}
+.smallhnd {width:17.5vw;height:17.5vw;background-image:url(images/smallhnd.png);background-size:100% 100%;position:absolute;left:14vw;top:33.4vh;transition:opacity 0.3s ease-out;opacity:0;display:none;z-index:11;}
+.degree {position:absolute;left:0;width:100%;text-align:center;top:30%;font-family:'Open Sans Light';font-size:10.5vh;color:white;z-index:9;transition:all 0.3s ease-out;opacity:1;}
+.fuelttl {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:53vh;left:10vw;width:80vw;text-align:center;color:white;}
+.fuelval {font-family:'Open Sans Light';font-size:10vw;position:absolute;top:55vh;left:10vw;width:80vw;text-align:center;color:white;}
+.fuelbtm {font-family:'Open Sans Light';font-size:3.3vw;position:absolute;top:81vh;left:10vw;width:80vw;text-align:center;color:white;}
+.fuelmin {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:70vh;left:5vw;width:20vw;color:white;}
+.fuelmax {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:70vh;left:75vw;width:20vw;color:white;text-align:right;}
+#fuelline {position:absolute;left:15vw;width:70vw;height:2px;background-size:100% 100%;background-image:url(images/colorline.png);top:71.25vh;}
+#fuelhnd {width:17.5vw;height:17.5vw;background-image:url(images/smallhnd.png);background-size:100% 100%;position:absolute;left:41.25vw;top:66.5vh;z-index:11;}
+.placettl {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:48.8vh;left:10vw;width:80vw;text-align:center;color:white;display:none;}
+.placettlsm {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:48.8vh;left:10vw;width:80vw;text-align:center;color:white;}
+.placetop {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:50px;left:20%;width:60%;text-align:center;color:white;}
+#btminfo {font-family:'Open Sans Light';font-size:3.5vw;position:absolute;top:70%;left:9.5vw;color:white;}
+.capl1 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:5.1vw;width:26vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capl2 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:5.1vw;width:26vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capl1active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:5.1vw;width:37vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capl2active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:5.1vw;width:37vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capm1 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:0;width:100%;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capm2 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:0;width:100%;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capm1active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:0;width:100%;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capm2active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:0;width:100%;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capr1 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:68vw;width:26vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capr2 {font-family:Roboto;color:white;opacity:0.25;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:68vw;width:26vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capr1active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:56.9vw;width:37vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.capr2active {font-family:Roboto;color:white;opacity:1;transition:all 0.3s ease-out;font-size:4.26vw;position:absolute;z-index:1;left:56.9vw;width:37vw;text-align:center;top:84%;transition:all 0.3s ease-out;}
+.tempdeg {font-family:"Open Sans";font-size:5.5vw;color:white;position:absolute;left:81.3vw;top:1vw;}
+.tempterm {width:4.8vw;height:6.4vw;position:absolute;top:1.86vw;left:74.9vw;background-image:url(images/therm.png?v=3);background-size:100% 100%;}
+.btnball {position:absolute;left:9.6vw;top:2.67vw;width:12.8vw;height:12.8vw;background-size:100% 100%;background-image:url(images/btnball.png);transition:all 0.3s ease-out;}
+.btnballonoff {position:absolute;left:9.6vw;top:2.67vw;width:12.8vw;height:12.8vw;background-size:100% 100%;background-image:url(images/btnball_onoff.png);transition:all 0.3s ease-out;}
+.onswitch {width:12.8vw;height:12.8vw;background-image:url(images/btn_on.png);background-size:100% 100%;transition:all 0.3s ease-out;opacity:1;}
+.btnchoose {position:absolute;z-index:4;left:8%;top:64.75%;width:12.8vw;height:12.8vw;background-size:100% 100%;background-image:url(images/btnball.png);transition:all 0.3s ease-out;}
+.btnopt1 {position:absolute;z-index:5;left:8%;top:64.75%;width:12.8vw;height:12.8vw;background-size:6.4vw 6.4vw;background-image:url(images/icon_fan.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:0.35;}
+.btnopt1sel {position:absolute;z-index:5;left:8%;top:64.75%;width:12.8vw;height:12.8vw;background-size:8.53vw 8.53vw;background-image:url(images/icon_fan.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:1;}
+.btnopt2 {position:absolute;z-index:5;left:31%;top:64.75%;width:12.8vw;height:12.8vw;background-size:6.4vw 6.4vw;background-image:url(images/icon_thermometer.png?v=2);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:0.35;}
+.btnopt2sel {position:absolute;z-index:5;left:31%;top:64.75%;width:12.8vw;height:12.8vw;background-size:8.53vw 8.53vw;background-image:url(images/icon_thermometer.png?v=2);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:1;}
+.btnopt3 {position:absolute;z-index:5;left:54%;top:64.75%;width:12.8vw;height:12.8vw;background-size:6.4vw 6.4vw;background-image:url(images/icon_supply.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:0.35;}
+.btnopt3sel {position:absolute;z-index:5;left:54%;top:64.75%;width:12.8vw;height:12.8vw;background-size:8.53vw 8.53vw;background-image:url(images/icon_supply.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:1;}
+.btnopt4 {position:absolute;z-index:5;left:77%;top:64.75%;width:12.8vw;height:12.8vw;background-size:6.4vw 6.4vw;background-image:url(images/icon_sandclock.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:0.35;}
+.btnopt4sel {position:absolute;z-index:5;left:77%;top:64.75%;width:12.8vw;height:12.8vw;background-size:8.53vw 8.53vw;background-image:url(images/icon_sandclock.png);background-repeat:no-repeat;background-position:center center;transition:all 0.3s ease-out;opacity:1;}
+.btnyes {width:8.53vw;height:8.53vw;position:absolute;left:8vw;top:42vh;background-size:100%;background-image:url(images/btn_yes.png);opacity:0;transition:all 0.3s ease-out;}
+.btnno {width:8.53vw;height:8.53vw;position:absolute;left:100%;margin-left:-16.5vw;top:42vh;background-size:100%;background-image:url(images/btn_no.png);opacity:0;transition:all 0.3s ease-out;}
+.logo {position:absolute;width:55.4vw;left:50%;margin-left:-27.7vw;top:7.5vh;background-image:url(images/logo.png);height:23vh;background-size:100% 100%;}
+.helpline1 {position:absolute;width:80vw;left:50%;margin-left:-40vw;height:3vh;color:white;font-family:Roboto;font-size:2vh;text-align:center;top:4.5vh;}
+.aboutline1 {position:absolute;width:80vw;left:50%;margin-left:-40vw;height:3vh;color:white;font-family:Roboto;font-size:2vh;text-align:center;top:49.5vh;}
+.aboutline2 {position:absolute;width:80vw;left:50%;margin-left:-40vw;height:3vh;color:silver;font-family:Roboto;font-size:1.95vh;text-align:center;top:52.5vh;}
+.aboutline3 {position:absolute;width:80vw;left:50%;margin-left:-40vw;height:3vh;color:#3774e5;font-family:Roboto;font-size:1.95vh;text-align:center;top:55vh;}
+.aboutline4 {position:absolute;width:100%;left:0;height:5.3vw;color:silver;font-family:Roboto;font-size:1.9vh;text-align:center;top:100%;margin-top:-8vh;}
+.helpbtn {position:absolute;background-color:#072b6e;left:5%;width:90%;height:7vh;text-align:center;line-height:7vh;color:white;font-family:Roboto;font-size:4vw;}
+.opacity05 {opacity:0.5;}
+.helpbtn:active {position:absolute;background-color:#103e93;left:5%;width:90%;height:7vh;text-align:center;line-height:7vh;color:white;font-family:Roboto;font-size:4vw;}
+.aidbtn1 {top:15%;}
+.aidbtn2 {top:25%;}
+.aidbtn3 {top:35%;}
+.aidbtn4 {top:45%;}
+.aidbtn5 {top:55%;}
+.helpbtn0 {top:60%;}
+.helpbtn1 {top:70%;}
+.helpbtn2 {top:80%;}
+.helpbtn3 {top:90%;}
+.language {position:absolute;left:5%;width:90%;height:7vh;line-height:7vh;color:white;font-family:Roboto;font-size:4vw;}
+.language_sel {position:absolute;left:5%;width:90%;height:7vh;line-height:7vh;color:white;background-color:#103e93;font-family:Roboto;font-size:4vw;font-weight:600;}
+#lang1 {top:5vh;}
+#lang2 {top:14vh;}
+#lang3 {top:23vh;}
+#lang4 {top:32vh;}
+#lang5 {top:41vh;}
+#lang6 {top:50vh;}
+#lang7 {top:59vh;}
+#lang8 {top:68vh;}
+.logininp {border:0px none black;background-color:transparent;color:white;font-family:Roboto;font-size:2vh;width:90%;height:4.5vh;outline:none;}
+.loginbtn {width:90%;height:6vh;background-color:#072b6e;text-align:center;color:white;border:0px none white;line-height:6vh;font-family:Roboto;font-size:2vh;}
+.loginbtn:active {width:90%;height:6vh;background-color:#103e93;text-align:center;color:white;border:0px none white;line-height:6vh;font-family:Roboto;font-size:2vh;}
+.btntext {width:90%;height:30px;color:white;font-family:Roboto;font-size:2vh;text-align:center;}
+.inptbtm {width:90%;height:1px;background-color:white;}
+.inp1 {position:absolute;left:5%;top:4.5vh;}
+.inp1b {position:absolute;left:5%;top:9vh;}
+.inp2 {position:absolute;left:5%;top:12vh;}
+.inp2b {position:absolute;left:5%;top:16.5vh;}
+.inp3 {position:absolute;left:5%;top:19.5vh;}
+.inp3b {position:absolute;left:5%;top:24vh;}
+.inp4_2 {position:absolute;left:5%;top:27vh;}
+.inp4_2b {position:absolute;left:5%;top:31.5vh;}
+.inp5_2 {position:absolute;left:5%;top:34.5vh;}
+.inp5_2b {position:absolute;left:5%;top:39vh;}
+.inp4 {position:absolute;left:5%;top:31.5vh;}
+.inp5 {position:absolute;left:5%;top:37.5vh;}
+.inp6 {position:absolute;left:5%;top:45vh;}
+.inp7 {position:absolute;left:5%;top:52.5vh;}
+.inp8 {position:absolute;left:5%;top:60vh;}
+.inp9 {position:absolute;left:5%;top:67.5vh;}
+.inpA {position:absolute;left:5%;top:75vh;}
+#errormsg {width:92.5vw;position:absolute;height:21.3vw;background-size:100% 100%;background-image:url(images/baloon.png);left:50%;margin-left:-46.25vw;z-index:99999;transition:opacity 0.3s ease-out;}
+#errormsginside {font-family:Roboto;font-size:2vh;color:white;position:absolute;left:5%;width:90%;top:45%;}
+#fuelwdiv {position:absolute;left:50%;margin-left:-157px;top:14px;width:315px;height:55px;background-image:url('images/fuelwbg.png');color:black;background-size:100% 100%;font-family:Roboto;font-size:3vh;transition:top 0.5s ease-out;z-index:99;display:block;overflow-x:hidden;}
+#infodiv {position:absolute;left:50%;margin-left:-157px;top:14px;width:315px;height:55px;background-image:url('images/infobg.png');color:black;background-size:100% 100%;font-family:Roboto;font-size:3vh;transition:top 0.5s ease-out;z-index:99;display:block;overflow-x:hidden;}
+#errordiv {position:absolute;left:50%;margin-left:-157px;top:14px;width:315px;height:55px;background-image:url('images/errorbg.png');color:black;background-size:100% 100%;font-family:Roboto;font-size:3vh;transition:top 0.5s ease-out;z-index:99;display:block;overflow-x:hidden;}
+#fuelwicontop {position:absolute;background-size:100% 100%;left:89vw;top:3vh;width:4vh;height:4vh;background-image:url(images/warning.png);z-index:99991;display:none;}
+.fuelwicon {position:absolute;background-size:100% 100%;left:3vh;top:5vh;width:8vh;height:8vh;background-image:url(images/warning.png);}
+.fuelwtitle {position:absolute;left:60px;top:7px;font-family:Roboto;font-size:15.5px;font-weight:bold;width:255px;}
+.fuelwdesc {position:absolute;left:60px;top:26px;font-family:'Open Sans';font-size:13px;width:255px;overflow-x:hidden;}
+.authorizedusers {position:absolute;left:5vw;top:20px;width:90vw;bottom:20vh;overflow-y:auto;overflow-x:hidden;}
+.authorizeduser {position:relative;width:100%;height:67px;font-family:'Open Sans';color:white;}
+.authavatar {width:48px;height:48px;background-size:100% 100%;position:absolute;left:0;top:0;}
+.authfullname {position:absolute;left:60px;top:0;width:calc(100% - 65px);font-size:15px;font-weight:bold;}
+.authphone {position:absolute;left:60px;top:22px;width:calc(100% - 65px);font-size:13px;color:silver;}
+.authstat_act {position:absolute;left:60px;top:40px;width:calc(100% - 65px);font-size:12px;color:green;}
+.authstat_psv {position:absolute;left:60px;top:40px;width:calc(100% - 65px);font-size:12px;color:olive;}
+#detusravatar {position:absolute;left:35vw;width:30vw;height:30vw;top:30px;background-size:100% 100%;background-image:url(images/userbig.png);}
+#detusrfullname {position:absolute;left:0;width:100%;height:20px;top:calc(40vw + 15px);text-align:center;color:white;font-family:'Open Sans';font-size:14px;font-weight:bold;}
+#detusrphonenr {position:absolute;left:0;width:100%;height:20px;top:calc(40vw + 35px);text-align:center;color:silver;font-family:'Open Sans';font-size:13px;}
+#detusrv1 {position:absolute;left:15vw;width:70vw;height:20px;top:calc(40vw + 70px);color:olive;font-family:'Open Sans';font-size:13px;font-weight:bold;}
+#detusrv1v {color:yellow;font-weight:normal;position:absolute;left:35vw;}
+#detusrv2 {position:absolute;left:15vw;width:70vw;height:20px;top:calc(40vw + 95px);color:olive;font-family:'Open Sans';font-size:13px;font-weight:bold;}
+#detusrv2v {color:yellow;font-weight:normal;position:absolute;left:35vw;}
+#detusrv3 {position:absolute;left:15vw;width:70vw;height:20px;top:calc(40vw + 120px);color:olive;font-family:'Open Sans';font-size:13px;font-weight:bold;}
+#detusrv3v {color:yellow;font-weight:normal;position:absolute;left:35vw;}
+#wiconC {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_lostconn.png);display:none;left:79vw;top:21px;z-index:99991;}
+#wiconH {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_home.png);display:none;left:79vw;top:21px;z-index:99991;}
+#wiconEr {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_error.png);display:none;left:79vw;top:21px;z-index:99991;}
+#wiconEn {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_qm.png);display:none;left:79vw;top:21px;z-index:99991;}
+#wiconFon {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_firehot.png);display:none;left:79vw;top:21px;z-index:99991;}
+#wiconFoff {position:absolute;width:4vh;height:4vh;background-size:100% 100%;background-image:url(images/icon_fire.png);display:none;left:79vw;top:21px;z-index:99991;}
+</style>
+</head>
+<body onload="setAngleValue(angHome1,1);init()" style="position:relative">
+
+<div id="leftmenubg" onclick="doCloseMenu()"></div>
+<div id="leftmenu">
+	<div class="handle_hot" onclick="doCloseMenu()"></div>
+	<div id="navbtn1" class="navbtn1_sel" onclick="switchToTab(1)"></div>
+	<div id="navbtn2" class="navbtn2_reg" onclick="switchToTab(2)"></div>
+	<div id="navbtn7" class="navbtn7_reg" onclick="switchToTab(7)"></div>
+	<div id="navbtn3" class="navbtn3_reg" onclick="switchToTab(3)"></div>
+	<div id="navbtn5" class="navbtn5_reg" onclick="switchToTab(5)"></div>
+	<div id="navbtn6" class="navbtn6_reg" onclick="switchToTab(6)"></div>
+</div>
+<div id="top">
+	<div id="handle" onclick="doOpenMenu()"></div>
+	<div id="title">FMA ELEKTRONİK</div>
+</div>
+<div id="fuelwicontop" onclick="switchToTab(7)"></div>
+<div id="wiconC" onclick="displayError('-99')"></div>
+<div id="wiconH" onclick="displayInfo('Oda termostatı devrede')"></div>
+<div id="wiconEr" onclick="displayError(errorCode)"></div>
+<div id="wiconEn" onclick="displayInfo('Kazan motorları kapalı')"></div>
+<div id="wiconFon" onclick="displayInfo('Cihaz ısıtma yapıyor')"></div>
+<div id="wiconFoff" onclick="displayInfo('Cihaz beklemede')"></div>
+<div id="errordiv" onclick="doFadeErrorOut()">
+<div class="fuelwtitle">BİR HATA OLUŞTU</div>
+<div class="fuelwdesc" id="fuelwdesc1"></div>
+</div>
+<div id="infodiv" onclick="doFadeInfoOut()">
+<div class="fuelwtitle">BİLGİLENDİRME</div>
+<div class="fuelwdesc" id="fuelwdesc2"></div>
+</div>
+<div id="fuelwdiv" onclick="doFadeFuelWarningOut()">
+<!--<div class="fuelwicon"></div>-->
+<div class="fuelwtitle">DÜŞÜK YAKIT SEVİYESİ</div>
+<div class="fuelwdesc">Yakıt seviyesi <span id="fuewlamnt"></span> düzeyine inmiştir</div>
+</div>
+<div id="bottom">
+	<div id="tab1" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)">
+		<div id="conn1" class="conn"></div>
+		<div id="conn1e" class="conne"></div>
+		<div class="tempterm" id="tempterm1"></div>
+		<div class="tempdeg" id="roomtemp1">-</div>
+		<div class="chamberpop" id="chamberpop1">
+		</div>
+		<div class="smallhnd" id="smallhnd1" ontouchstart="handleTouchStart(event,'home_smallhnd')" ontouchmove="handleTouchMove(event)" >
+		</div>
+		<div class="chamber" id="chamber1" onclick="displayYesNo('home_big',btnPosHome,null,null)" ontouchmove="handleTouchMove(event)">
+		<div class="degree" id="deg1">23.5<sup style='font-size:40px'>o</sup></div>
+		</div>
+
+		<div id="button1" class="midbtn" ontouchstart="handleTouchStart(event,'home_big')" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)"></div>
+		<div id="capl1" ontouchstart="handleTouchStart(event,'home_big')" class="capl1">DIŞARI</div>
+		<div id="capm1" ontouchstart="handleTouchStart(event,'home_big')" class="capm1active">EV</div>
+		<div id="capr1" ontouchstart="handleTouchStart(event,'home_big')" class="capr1">GECE</div>
+
+		<div class="btnyes" id="yes1" onclick="hideYesNoNow(false)"></div>
+		<div class="btnno" id="no1" onclick="hideYesNoNow(true)"></div>
+	</div>
+	<div id="tab2" style="display:none" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)" style="display:none">
+		<div id="conn2" class="conn"></div>
+		<div id="conn2e" class="conne"></div>
+		<div class="btnballonoff" ontouchstart="if($('#conn1')[0].style.display=='block'){return;}downBtn='boiler_onoff';slideItemTo(btnPosBoilerOnOff == 0 ? 1 : 0)" id="boilerSwitch"><div class="onswitch" id="boilerSwitchOn"></div></div>
+		<div class="tempterm" id="tempterm2"></div>
+		<div class="tempdeg" id="roomtemp2">-</div>
+		<div class="chamberpop" id="chamberpop2">
+		</div>
+		<div class="smallhnd" id="smallhnd2" ontouchstart="handleTouchStart(event,'boiler_smallhnd')" ontouchmove="handleTouchMove(event)" >
+		</div>
+		<div class="chamber" id="chamber2" onclick="displayYesNo('boiler_mode',null,btnPosBoilerMode,btnPosBoiler)" ontouchmove="handleTouchMove(event)" >
+		<div class="degree" id="deg2">3</div>
+		</div>
+
+		<div class="btnchoose" ontouchstart="handleTouchStart(event,'boiler_mode')" ontouchmove="handleTouchMove(event)" id="boilermodech"></div>
+		<div class="btnopt1sel" id="optbtn1" ontouchend="downBtn='boiler_mode';slideItemTo(-btnPosBoilerMode)"></div>
+		<div class="btnopt2" id="optbtn2" ontouchend="downBtn='boiler_mode';slideItemTo(-btnPosBoilerMode + 1)"></div> <!--  ontouchstart="handleTouchStart(event,'boiler_mode')" ontouchmove="handleTouchMove(event)" -->
+		<div class="btnopt3" id="optbtn3" ontouchend="downBtn='boiler_mode';slideItemTo(-btnPosBoilerMode + 2)"></div>
+		<div class="btnopt4" id="optbtn4" ontouchend="downBtn='boiler_mode';slideItemTo(-btnPosBoilerMode + 3)"></div>
+
+		<div class="placetop" id="plctoptext">KAZAN KONTROL</div>
+		<div class="placettlsm" id="dispname">FAN HIZI</div>
+		<div id="button2" class="midbtn" ontouchstart="handleTouchStart(event,'boiler_big')" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)"></div>
+		<div id="capl2" ontouchstart="handleTouchStart(event,'boiler_big')" class="capl2">NORMAL</div>
+		<div id="capm2" ontouchstart="handleTouchStart(event,'boiler_big')" class="capm2active">EKO</div>
+		<div id="capr2" ontouchstart="handleTouchStart(event,'boiler_big')" class="capr2">KONFOR</div>
+
+		<div class="btnyes" id="yes2" onclick="hideYesNoNow(false)"></div>
+		<div class="btnno" id="no2" onclick="hideYesNoNow(true)"></div>
+	</div>
+	<div id="tab4p" style="display:none">
+		<img src=images/loadingb.gif style=position:absolute;width:20vw;height:20vw;left:50vw;margin-left:-10vw;top:32vw;>
+		<div class="inp4 btntext" id="btnwait1">Lütfen bekleyin...</div>
+	</div>
+	<div id="tab4a0" style="display:none">
+		<img src=images/loadingb.gif style=position:absolute;width:20vw;height:20vw;left:50vw;margin-left:-10vw;top:32vw;>
+		<div class="inp4 btntext" id="btnwait1">Lütfen bekleyin...</div>
+	</div>
+	<div id="tab5" style="display:none">
+		<div class="language_sel" id="lang1" onclick="selectLang(1)">            <img src=images/flag_tr.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      Türkçe</div>
+		<div class="language" id="lang2" onclick="selectLang(2)">            <img src=images/flag_de.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      Deutsch</div>
+		<div class="language" id="lang3" onclick="selectLang(3)">            <img src=images/flag_en.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      English</div>
+		<div class="language" id="lang4" onclick="selectLang(4)">            <img src=images/flag_es.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      Español</div>
+		<div class="language" id="lang5" onclick="selectLang(5)">            <img src=images/flag_fr.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      Français</div>
+		<div class="language" id="lang6" onclick="selectLang(6)">            <img src=images/flag_it.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      Italiano</div>
+		<div class="language" id="lang7" onclick="selectLang(7)">            <img src=images/flag_ir.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      فارسی</div>
+		<div class="language" id="lang8" onclick="selectLang(8)">            <img src=images/flag_ru.png style=height:4vh;left:2.5vw;width:auto;position:absolute;top:1.5vh;>      русский</div>
+		<!--<div class="helpbtn helpbtn3" id="btnchoose" onclick="selectLang(-1)">SEÇ</div>-->
+	</div>
+	<div id="tab6" style="display:none">
+		<div class="logo"></div>
+		<div class="aboutline1">FMA Elektronik I-Clim Sistemleri</div>
+		<div class="aboutline2">2017 FMA Elektronik</div>
+		<div class="aboutline3" onclick="http://www.fmaelektronik.com">http://www.fmaelektronik.com</div>
+		<div class="helpbtn helpbtn1" onclick="doHelper(1)" id="hbtn1">Sorun Giderici</div>
+		<div class="helpbtn helpbtn2" id="hbtn2">Online Yardım</div>
+		<div class="aboutline4"><span style='color:white'>FMA Elektronik</span> tarafından <span style='color:white'>SKTB Limited</span>'e yaptırılmıştır</div>
+	</div>
+	<div id="tab6_2" style="display:none">
+		<div class="helpline1">Cihazınızda ne tür bir sorun var?</div>
+		<div class="helpbtn aidbtn1" onclick="doHelper(2)">Cihaz hiç çalışmıyor</div>
+		<div class="helpbtn aidbtn2" onclick="doHelper(8)">Cihaz bir hata kodu veriyor</div>
+		<div class="helpbtn aidbtn3" onclick="doHelper(4)">Başka bir sorun var</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_3" style="display:none">
+		<div class="helpline1">Cihazınızın fişi takılı mı?</div>
+		<div class="helpbtn aidbtn1" onclick="doHelper(5)">Evet takılı</div>
+		<div class="helpbtn aidbtn2" onclick="doHelper(3)">Hayır takılı değil</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_5" style="display:none">
+		<div class="helpline1">Evinizde elektrikler kesik mi? Şalterler açık mı?</div>
+		<div class="helpbtn aidbtn1" onclick="doHelper(4)">Elektrik kesik değil ve şalterler açık</div>
+		<div class="helpbtn aidbtn2" onclick="doHelper(7)">Elektrik kesik veya şalterler kapalı</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_8" style="display:none">
+		<div class="helpline1">Cihaz hangi hata kodunu veriyor?</div>
+		<div class="helpbtn aidbtn1" onclick="doHelper(9)">E001</div>
+		<div class="helpbtn aidbtn2" onclick="doHelper(9)">E002</div>
+		<div class="helpbtn aidbtn3" onclick="doHelper(9)">E003</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_4" style="display:none">
+		<div class="helpline1" style='color:yellow'>Cihazınızın fişinin takılı olması gerekmektedir. Lütfen fişi takın ve yine çalışmazsa sorun gidericiyi tekrar çalıştırın</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_7" style="display:none">
+		<div class="helpline1" style='color:yellow'>Eğer şalterler inikse kaldırmayı deneyin. Eğer kaldırdığınızda şalter yeniden atıyorsa kesinlikle aynı şeyi tekrar yapmayı denemeyin! Bir elektrikçi çağırmanız veya servisi aramanız yerinde olacaktır. Eğer elektrikler kesikse de elektrik geldikten sonra tekrar sorun gidericiyi çalıştırın</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_9" style="display:none">
+		<div class="helpline1" style='color:yellow'>Bu hatayla ilgili olarak servisi aramanız gerekiyor. Lütfen kendi başınıza düzeltme girişiminde bulunmayın</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab6_6" style="display:none">
+		<div class="helpline1" style='color:red'>Sorun giderici cihazınızdaki sorunu tespit edemiyor. Lütfen servisinizi arayın</div>
+		<div class="helpbtn helpbtn3" onclick="doHelper(0)">Başa Dön</div>
+	</div>
+	<div id="tab7" style="display:none">
+		<div class="btntext inp1" id="fuellevel">YAKIT SEVİYESİ</div>
+		<div id="gaugeF" class="gauge0_12">
+		<div class="degree"><span style='font-size:5vh'>%</span><span id="degF">0</span></div>
+		</div>
+		<div class="fuelttl" id="fwttl">UYARI SEVİYESİ:</div>
+		<div class="fuelval"><span style='font-size:3vh'>%</span><span id="fuelwarnval1">20</span></div>
+		<div class="fuelbtm">Yakıt seviyesi <b>%<span id="fuelwarnval2">20</span></b> altına düştüğünde bir uyarı ile bilgilendirileceksiniz</div>
+		<div class="fuelmin">%10</div>
+		<div class="fuelmax">%30</div>
+		<div id="fuelline"></div>
+		<div id="fuelhnd" ontouchstart="handleFuelSliderStart(event)" ontouchmove="handleFuelSliderMove(event)" ontouchend="handleFuelSliderEnd(event)"></div>
+	</div>
+	<div id="errormsg" style="display:none" onclick="clearTimeout(errormsgDisappear);this.style.display='none'">
+	<div id="errormsginside"></div>
+	</div>
+</div>
+
+<script>
+var userid = "";
+var defaultLang = 1;
+var errorMessage1 = "Lütfen telefon numaranızı giriniz";
+var errorMessage2 = "Lütfen şifrenizi giriniz";
+var errorMessage3 = "Lütfen adınızı soyadınızı giriniz";
+var errorMessage4 = "Şifrenizi en az 8 haneli olmalıdır";
+var errorMessage5 = "Şifreniz ve tekrarı aynı olmalıdır";
+var errorMessage6 = "Girdiğiniz kullanıcı adı veya şifre hatalıdır";
+var errorMessage7 = "Hesap bilgileri yükleniyor...";
+var errorMessage8 = "Lütfen bekleyin...";
+var errorMessage9 = "Oturumunuz sonlanmış, lütfen tekrar giriş yapın";
+var errorMessageOK = "Tamam";
+var sessionMessageU1 = "Kullanıcı Yetkilendirme";
+var sessionMessageU2 = "Servis İşlemleri";
+var sessionMessage0 = "İşlem Tarihçesi";
+var sessionMessage1 = "Profil Düzenle";
+var sessionMessage2 = "Çıkış Yap";
+var messageWelcome = "Hoş geldiniz";
+var messageProfilePicture = "profil resminizi değiştirmek için üzerine dokunabilirsiniz";
+var messageLogoutPrompt = "Çıkış yapmak istediğinizden emin misiniz?";
+var messageLogout = "Çıkış yapılıyor...";
+var messageUpdate = "Kaydet";
+var messageRegister = "Kayıt Ol";
+var serviceUser = "false";
+var idToEdit = 0;
+var setValueInterval;
+var getIntervalVar;
+
+var canSave = true;
+var downBtn = "none";
+var moving = true;
+var diff = 0;
+var oldX = -1;
+var oldY = -1;
+var fuel_moving = true;
+var fuel_oldX = -1;
+var fuel_oldY = -1;
+var btnPosHome = 0;
+var btnPosBoiler = 0;
+var btnPosBoilerOnOff = 1;
+var btnPosBoilerMode = 0;
+var lastBoilerCount = -1;
+var boilerCountSame = 0;
+
+var angHome1;
+var angHome2;
+var angHome3;
+var angBoiler1 = [86 + 90, 86 + 90, 86 + 90];
+var angBoiler2 = [106 + 90, 106 + 90, 106 + 90];
+var angBoiler3 = [126 + 90, 126 + 90, 126 + 90];
+var angBoiler4 = [146 + 90, 146 + 90, 146 + 90];
+var angleDefault;
+var fuelLevel = 0;
+var fuelLevelMin = 0;
+var _latitude = 0;
+var _longitude = 0; 
+
+angHome1 = 86 + 90;
+angHome2 = -200 + 90;
+angHome3 = -228 + 90;
+
+var deviceSerial = "";
+var errorCode = 0;
+
+const LANG_TR = 1;
+const LANG_DE = 2;
+const LANG_EN = 3;
+const LANG_ES = 4;
+const LANG_FR = 5;
+const LANG_IT = 6;
+const LANG_PE = 7;
+const LANG_RU = 8;
+
+function getMessageForDefaultLang(param)
+{
+	switch(param)
+	{
+		case 1:
+			switch(defaultLang)
+			{
+				case LANG_TR:
+					return "%1 oda sıcaklığını değiştirdi";
+				case LANG_DE:
+					return "%1 hat Raumtemperatur geändert";
+				case LANG_EN:
+					return "%1 has changed the room temperature";
+				case LANG_ES:
+					return "%1 ha cambiado la temperatura ambiente";
+				case LANG_FR:
+					return "%1 a changé la température de la pièce";
+				case LANG_IT:
+					return "%1 ha cambiato la temperatura ambiente";
+				case LANG_PE:
+					return "%1 درجه حرارت اتاق را تغییر داده است";
+				case LANG_RU:
+					return "% 1 изменение комнатной температуры";
+			}
+
+			break;
+		case 2:
+			switch(defaultLang)
+			{
+				case LANG_TR:
+					return "%1 kazan ayarlarını değiştirdi";
+				case LANG_DE:
+					return "%1 hat Kesseleinstellungen geändert";
+				case LANG_EN:
+					return "%1 has changed boiler settings";
+				case LANG_ES:
+					return "%1 ha cambiado la configuración de la caldera";
+				case LANG_FR:
+					return "%1 a changé les paramètres de la chaudière";
+				case LANG_IT:
+					return "%1 ha cambiato le impostazioni della caldaia";
+				case LANG_PE:
+					return "%1 تنظیمات بویلر را تغییر داده است";
+				case LANG_RU:
+					return "% 1 изменение настроек котла";
+			}
+
+			break;
+		case 30:
+			switch(defaultLang)
+			{
+				case LANG_TR:
+					return "%1 kazanı kapattı";
+				case LANG_DE:
+					return "%1 hat den Kessel abgeschaltet";
+				case LANG_EN:
+					return "%1 has switched off the boiler";
+				case LANG_ES:
+					return "%1 ha desconectado la caldera";
+				case LANG_FR:
+					return "%1 a éteint la chaudière";
+				case LANG_IT:
+					return "%1 ha spento la caldaia";
+				case LANG_PE:
+					return "%1 بویلر را خاموش کرده است";
+				case LANG_RU:
+					return "% 1 закрыл котел";
+			}
+
+			break;
+		case 31:
+			switch(defaultLang)
+			{
+				case LANG_TR:
+					return "%1 kazanı açtı";
+				case LANG_DE:
+					return "%1 hat den Kessel eingeschaltet";
+				case LANG_EN:
+					return "%1 has switched on the boiler";
+				case LANG_ES:
+					return "%1 ha encendido la caldera";
+				case LANG_FR:
+					return "%1 a allumé la chaudière";
+				case LANG_IT:
+					return "%1 ha acceso la caldaia";
+				case LANG_PE:
+					return "%1 بویلر را فعال کرده است";
+				case LANG_RU:
+					return "% 1 открыл котел";
+			}
+
+			break;
+	}
+}
+
+function selectLang(lang)
+{
+	if(lang != -1)
+	{
+		defaultLang = lang;
+	}
+	
+	switch(defaultLang)
+	{
+		case LANG_RU:
+			$("#capl1")[0].innerHTML = "OUT";
+			$("#capm1")[0].innerHTML = "ДОМ";
+			$("#capr1")[0].innerHTML = "НОЧЬ";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ЭКО";
+			$("#capr2")[0].innerHTML = "КОМФОРТ";
+			$("#plctoptext")[0].innerHTML = "КОНТРОЛЬ КОТЛА";
+			$("#hbtn1")[0].innerHTML = "аварийный монтер";
+			$("#hbtn2")[0].innerHTML = "Онлайн-справка";
+			$("#linp_userid")[0].placeholder = "Ваш номер телефона";
+			$("#linp_password")[0].placeholder = "пароль";
+			$("#btnregister1")[0].innerHTML = "Регистрация";
+			$("#btnregister2")[0].innerHTML = "войти";
+			$("#btnlogin1")[0].innerHTML = "войти";
+			$("#btnlogin2")[0].innerHTML = "Не можете получить доступ к своей учетной записи?";
+			//$("#btnlogin3")[0].innerHTML = "Hesabınız yok mu? Ücretsiz üye olun";
+			$("#rinp_fullname")[0].placeholder = "Ваше имя";
+			$("#rinp_userid")[0].placeholder = "Ваш номер телефона";
+			$("#rinp_email")[0].placeholder = "Ваш адрес электронной почты (необязательно)";
+			$("#rinp_password")[0].placeholder = "пароль";
+			$("#rinp_password_repeat")[0].placeholder = "Пароль (еще раз)";
+			$("#fuellevel")[0].innerHTML = "УРОВЕНЬ ТОПЛИВА";
+			$("#fwttl")[0].innerHTML = "УРОВЕНЬ ПРЕДУПРЕЖДЕНИЯ:";
+
+			errorMessage1 = "Введите номер телефона";
+			errorMessage2 = "Введите пароль";
+			errorMessage3 = "Введите свою фамилию";
+			errorMessage4 = "Ваш пароль должен быть не менее 8 цифр.";
+			errorMessage5 = "Вы должны быть одинаковыми";
+			errorMessage6 = "Неверное имя пользователя или пароль";
+			errorMessage7 = "Загрузка информации учетной записи ...";
+			errorMessage8 = "Пожалуйста, подождите ...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Ваша сессия закончилась, пожалуйста, войдите снова";
+			errorMessageOK = "хорошо";
+			sessionMessageU1 = "Пользовательская авторизация";
+			sessionMessageU2 = "Сервисные операции";
+			sessionMessage0 = "История транзакций";
+			sessionMessage1 = "Изменить профиль";
+			sessionMessage2 = "Выйти";
+			messageWelcome = "желанный";
+			messageProfilePicture = "вы можете нажать, чтобы изменить имя своего профиля";
+			messageLogoutPrompt = "Вы действительно хотите выйти?";
+			messageLogout = "Выход ...";
+			messageUpdate = "экономить";
+			messageRegister = "Регистрация";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "СКОРОСТЬ ВЕНТИЛЯТОРА";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "ТЕМПЕРАТУРА";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "FEED";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "ОЖИДАЕМЫЙ ПЕРИОД";
+					break;
+			}
+			break;
+		case LANG_TR:
+			$("#capl1")[0].innerHTML = "DIŞARI";
+			$("#capm1")[0].innerHTML = "EV";
+			$("#capr1")[0].innerHTML = "GECE";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "EKO";
+			$("#capr2")[0].innerHTML = "KONFOR";
+			$("#plctoptext")[0].innerHTML = "KAZAN KONTROL";
+			$("#hbtn1")[0].innerHTML = "Sorun Giderici";
+			$("#hbtn2")[0].innerHTML = "Online Yardım";
+			$("#fuellevel")[0].innerHTML = "YAKIT SEVİYESİ";
+			$("#fwttl")[0].innerHTML = "UYARI SEVİYESİ:";
+
+			errorMessage1 = "Lütfen telefon numaranızı giriniz";
+			errorMessage2 = "Lütfen şifrenizi giriniz";
+			errorMessage3 = "Lütfen adınızı soyadınızı giriniz";
+			errorMessage4 = "Şifrenizi en az 8 haneli olmalıdır";
+			errorMessage5 = "Şifreniz ve tekrarı aynı olmalıdır";
+			errorMessage6 = "Girdiğiniz kullanıcı adı veya şifre hatalıdır";
+			errorMessage7 = "Hesap bilgileri yükleniyor...";
+			errorMessage8 = "Lütfen bekleyin...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Oturumunuz sonlanmış, lütfen tekrar giriş yapın";
+			errorMessageOK = "Tamam";
+			sessionMessageU1 = "Kullanıcı Yetkilendirme";
+			sessionMessageU2 = "Servis İşlemleri";
+			sessionMessage0 = "İşlem Tarihçesi";
+			sessionMessage1 = "Profil Düzenle";
+			sessionMessage2 = "Çıkış Yap";
+			messageWelcome = "Hoş geldiniz";
+			messageProfilePicture = "profil resminizi değiştirmek için üzerine dokunabilirsiniz";
+			messageLogoutPrompt = "Çıkış yapmak istediğinizden emin misiniz?";
+			messageLogout = "Çıkış yapılıyor...";
+			messageUpdate = "Kaydet";
+			messageRegister = "Kayıt Ol";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "FAN HIZI";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "SICAKLIK";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "BESLEME";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "BEKLEME SÜRESİ";
+					break;
+			}
+			break;
+		case LANG_DE:
+			$("#capl1")[0].innerHTML = "DRAUSSEN";
+			$("#capm1")[0].innerHTML = "HAUS";
+			$("#capr1")[0].innerHTML = "NACHT";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ECO";
+			$("#capr2")[0].innerHTML = "KOMFORT";
+			$("#plctoptext")[0].innerHTML = "KESSELKONTROLLE";
+			$("#hbtn1")[0].innerHTML = "Fehlerbehebung";
+			$("#hbtn2")[0].innerHTML = "Online-Hilfe";
+			$("#fuellevel")[0].innerHTML = "KRAFTSTOFFSTUFE";
+
+			errorMessage1 = "Bitte geben Sie Ihre Telefonnummer ein";
+			errorMessage2 = "Bitte geben Sie Ihre Telefonnummer ein";
+			errorMessage3 = "Bitte geben Sie Ihren Nachnamen ein";
+			errorMessage4 = "Ihr Passwort muss mindestens 8 Ziffern lang sein";
+			errorMessage5 = "Das Passwort muss gleich sein wieder";
+			errorMessage6 = "Der eingegebene Benutzername oder das Passwort ist falsch";
+			errorMessage7 = "Kontoinformationen werden geladen...";
+			errorMessage8 = "Bitte warten...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Ihre Sitzung ist vorbei, bitte melden Sie sich erneut an";
+			errorMessageOK = "Okay";
+			sessionMessageU1 = "Benutzerautorisierung";
+			sessionMessageU2 = "Servicebetrieb";
+			sessionMessage0 = "Verlauf der Transaktion";
+			sessionMessage1 = "Profil bearbeiten";
+			sessionMessage2 = "Kasse";
+			messageWelcome = "Willkommen";
+			messageProfilePicture = "Sie können auf Ihr Profilbild tippen, um es zu ändern";
+			messageLogoutPrompt = "Sind Sie sicher, dass Sie sich ausloggen?";
+			messageLogout = "Abmeldung läuft...";
+			messageUpdate = "Speichern";
+			messageRegister = "Registrieren";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "LÜFTERGESCHWINDIGKEIT";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "TEMPERATUR";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "FUTTER";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "WARTEZEIT";
+					break;
+			}
+			break;
+		case LANG_EN:
+			$("#capl1")[0].innerHTML = "OUTDOOR";
+			$("#capm1")[0].innerHTML = "HOME";
+			$("#capr1")[0].innerHTML = "NIGHT";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ECO";
+			$("#capr2")[0].innerHTML = "COMFORT";
+			$("#plctoptext")[0].innerHTML = "BOILER CONTROL";
+			$("#hbtn1")[0].innerHTML = "Troubleshooter";
+			$("#hbtn2")[0].innerHTML = "Online Help";3
+			$("#fuellevel")[0].innerHTML = "FUEL LEVEL";
+			$("#fwttl")[0].innerHTML = "WARNING LEVEL:";
+
+			errorMessage1 = "Please enter your phone number";
+			errorMessage2 = "Please enter your password";
+			errorMessage3 = "Please enter your name and last name";
+			errorMessage4 = "Your password has to be at least 8 characters long";
+			errorMessage5 = "Password and its repeat has to be the same";
+			errorMessage6 = "Eithier user name or password you entered is wrong";
+			errorMessage7 = "Loading your personal information...";
+			errorMessage8 = "Please wait...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Your session has ended, please login again";
+			errorMessageOK = "OK";
+			sessionMessageU1 = "User Authorization";
+			sessionMessageU2 = "Service Operations";
+			sessionMessage0 = "Transaction History";
+			sessionMessage1 = "Edit Profile";
+			sessionMessage2 = "Logout";
+			messageWelcome = "Welcome";
+			messageProfilePicture = "you can tap on your profile picture to change it";
+			messageLogoutPrompt = "Are you sure you want to logout?";
+			messageLogout = "Logout in progress...";
+			messageUpdate = "Save";
+			messageRegister = "Register";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "FAN SPEED";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "TEMPERATURE";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "FEED";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "WAIT DURATION";
+					break;
+			}
+			break;
+		case LANG_ES:
+			$("#capl1")[0].innerHTML = "INTEMPERIE";
+			$("#capm1")[0].innerHTML = "CASA";
+			$("#capr1")[0].innerHTML = "NOCHE";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ECO";
+			$("#capr2")[0].innerHTML = "CONFORT";
+			$("#plctoptext")[0].innerHTML = "CONTROL DE CALDERA";
+			$("#hbtn1")[0].innerHTML = "Solucionador de Problemas";
+			$("#hbtn2")[0].innerHTML = "Ayuda en Línea";
+			$("#fuellevel")[0].innerHTML = "NIVEL DE COMBUSTIBLE";
+
+			errorMessage1 = "Por favor ingrese su número de teléfono";
+			errorMessage2 = "Por favor ingrese su contraseña";
+			errorMessage3 = "Por favor ingrese su apellido";
+			errorMessage4 = "Su contraseña debe tener al menos 8 dígitos";
+			errorMessage5 = "Su clave tiene que ser el mismo otra vez";
+			errorMessage6 = "El nombre de usuario o la contraseña que ingresaste son incorrectos";
+			errorMessage7 = "Cargando información de la cuenta...";
+			errorMessage8 = "Por favor espere...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Su sesión ha terminado, por favor inicie sesión de nuevo";
+			errorMessageOK = "Bueno";
+			sessionMessageU1 = "Autorización de Usuario";
+			sessionMessageU2 = "Operaciones de Servicio";
+			sessionMessage0 = "Historial de Transacciones";
+			sessionMessage1 = "Editar Perfil";
+			sessionMessage2 = "Salir";
+			messageWelcome = "Bienvenido";
+			messageProfilePicture = "puedes tocar tu foto de perfil para cambiarla";
+			messageLogoutPrompt = "¿Estás seguro de que quieres desconectarte?";
+			messageLogout = "Cerrar sesión en progreso...";
+			messageUpdate = "Guardar";
+			messageRegister = "Registrarse";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "VELOCIDAD DEL VENTILADOR";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "TEMPERATURA";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "ALIMENTAR";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "ESPERE DURACIÓN";
+					break;
+			}
+			break;
+		case LANG_FR:
+			$("#capl1")[0].innerHTML = "EXTÉRIEURE";
+			$("#capm1")[0].innerHTML = "MAISON";
+			$("#capr1")[0].innerHTML = "NUIT";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ECO";
+			$("#capr2")[0].innerHTML = "CONFORT";
+			$("#plctoptext")[0].innerHTML = "CONTRÔLE DE CHAUDIÈRE";
+			$("#hbtn1")[0].innerHTML = "Outil de Dépannage";
+			$("#hbtn2")[0].innerHTML = "Aide en Ligne";
+			$("#fuellevel")[0].innerHTML = "NIVEAU DE CARBURANT";
+
+			errorMessage1 = "S'il vous plaît entrer votre numéro de téléphone";
+			errorMessage2 = "Veuillez entrer votre mot de passe";
+			errorMessage3 = "S'il vous plaît entrer votre nom de famille";
+			errorMessage4 = "Votre mot de passe doit comporter au moins 8 chiffres";
+			errorMessage5 = "Votre mot de passe doit être le même";
+			errorMessage6 = "Le nom d'utilisateur ou le mot de passe que vous avez entré est incorrect";
+			errorMessage7 = "Chargement des informations de compte...";
+			errorMessage8 = "Merci de patienter...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "Votre session est terminée, veuillez vous reconnecter";
+			errorMessageOK = "D'accord";
+			sessionMessageU1 = "Autorisation de L'utilisateur";
+			sessionMessageU2 = "Opérations de Service";
+			sessionMessage0 = "Historique des Transactions";
+			sessionMessage1 = "Modifier le Profil";
+			sessionMessage2 = "Se déconnecter";
+			messageWelcome = "Bienvenue";
+			messageProfilePicture = "vous pouvez appuyer sur votre photo de profil pour la changer";
+			messageLogoutPrompt = "Êtes-vous sûr de vouloir vous déconnecter?";
+			messageLogout = "Déconnexion en cours...";
+			messageUpdate = "Sauver";
+			messageRegister = "S'enregistrer";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "VITESSE DU VENTILATEUR";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "TEMPÉRATURE";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "ALIMENTATION";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "ATTENDRE LA DUREE";
+					break;
+			}
+			break;
+		case LANG_IT:
+			$("#capl1")[0].innerHTML = "ALL'APERTO";
+			$("#capm1")[0].innerHTML = "CASA";
+			$("#capr1")[0].innerHTML = "NOTTE";
+			$("#capl2")[0].innerHTML = "NORMAL";
+			$("#capm2")[0].innerHTML = "ECO";
+			$("#capr2")[0].innerHTML = "COMFORT";
+			$("#plctoptext")[0].innerHTML = "CONTROLLO DI CALORE";
+			$("#hbtn1")[0].innerHTML = "Troubleshooter";
+			$("#hbtn2")[0].innerHTML = "Guida in Linea";
+			$("#fuellevel")[0].innerHTML = "LIVELLO DI CARBURANTE";
+
+			errorMessage1 = "Inserisci il tuo numero di telefono";
+			errorMessage2 = "Inserisci la tua password";
+			errorMessage3 = "Inserisci il tuo cognome";
+			errorMessage4 = "La password deve essere di almeno 8 cifre";
+			errorMessage5 = "La password deve essere la stessa di nuovo";
+			errorMessage6 = "Il nome utente o la password immessi non sono corretti";
+			errorMessage7 = "Caricamento di informazioni sull'account...";
+			errorMessage8 = "Si prega di attendere...";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "La sessione è terminata, effettui di nuovo il login";
+			errorMessageOK = "Va bene";
+			sessionMessageU1 = "Autorizzazione Utente";
+			sessionMessageU2 = "Operazioni di Servizio";
+			sessionMessage0 = "Cronologia Delle Transazioni";
+			sessionMessage1 = "Modifica profilo";
+			sessionMessage2 = "Disconnettersi";
+			messageWelcome = "Benvenuto";
+			messageProfilePicture = "puoi toccare l'immagine del tuo profilo per modificarla";
+			messageLogoutPrompt = "Sei sicuro di voler uscire?";
+			messageLogout = "Disconnetti in corso ...";
+			messageUpdate = "Salvare";
+			messageRegister = "Registrazione";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "VELOCITÀ DELLA VENTOLA";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "TEMPERATURA";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "ALIMENTAZIONE";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "PRIMA DURATA";
+					break;
+			}
+			break;
+		case LANG_PE:
+			$("#capl1")[0].innerHTML = "خارج از منزل";
+			$("#capm1")[0].innerHTML = "خانه";
+			$("#capr1")[0].innerHTML = "شب";
+			$("#capl2")[0].innerHTML = "نرمال";
+			$("#capm2")[0].innerHTML = "اکو";
+			$("#capr2")[0].innerHTML = "راحت";
+			$("#plctoptext")[0].innerHTML = "کنترل بویلر";
+			$("#hbtn1")[0].innerHTML = "عیب یابی";
+			$("#hbtn2")[0].innerHTML = "راهنما آنلاین";
+			$("#fuellevel")[0].innerHTML = "سطح سوخت";
+
+			errorMessage1 = "لطفا شماره تلفن خود را وارد کنید";
+			errorMessage2 = "لطفا رمز عبور خود را وارد کنید";
+			errorMessage3 = "لطفا نام خانوادگی خود را وارد کنید";
+			errorMessage4 = "رمز عبور شما باید حداقل 8 رقمی باشد";
+			errorMessage5 = "رمز عبور شما باید دوباره همان";
+			errorMessage6 = "نام کاربری یا رمز ورود شما نادرست است";
+			errorMessage7 = "در حال بارگیری اطلاعات حساب";
+			errorMessage8 = "لطفا صبر کنید";
+			$("#btnwait1")[0].innerHTML = errorMessage8;
+			errorMessage9 = "جلسه شما به پایان رسیده است، لطفا دوباره وارد شوید";
+			errorMessageOK = "باشه";
+			sessionMessageU1 = "مجوز کاربر";
+			sessionMessageU2 = "عملیات سرویس";
+			sessionMessage0 = "تاریخ تراکنش";
+			sessionMessage1 = "ویرایش مشخصات";
+			sessionMessage2 = "خروج از سیستم";
+			messageWelcome = "خوش آمدی";
+			messageProfilePicture = "شما می توانید بر روی تصویر نمایه خود لمس کنید تا آن را تغییر دهید";
+			messageLogoutPrompt = "آیا مطمئن هستید که می خواهید از سیستم خارج شوید؟";
+			messageLogout = "خروج در حال انجام ...";
+			messageUpdate = "صرفه جویی";
+			messageRegister = "ثبت نام کنید";
+
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					$("#dispname")[0].innerHTML = "سرعت فن";
+					break;
+				case 1:
+					$("#dispname")[0].innerHTML = "درجه حرارت";
+					break;
+				case 2:
+					$("#dispname")[0].innerHTML = "خوراک";
+					break;
+				case 3:
+					$("#dispname")[0].innerHTML = "مدت زمان انتظار";
+					break;
+			}
+			break;
+	}
+
+	if(document.getElementById('sessionended') != null)
+	{
+		document.getElementById('sessionended').innerHTML = errorMessage9;
+		document.getElementById('sessionendedbtn').innerHTML = errorMessageOK;
+	}
+
+	if(document.getElementById('sessionbtn1') != null){
+		document.getElementById("sessionbtnU").innerHTML = serviceUser ? sessionMessageU2 : sessionMessageU1;
+		//document.getElementById("sessionbtn0").innerHTML = sessionMessage0;
+		document.getElementById("sessionbtn1").innerHTML = sessionMessage1;
+		document.getElementById("sessionbtn2").innerHTML = sessionMessage2;
+
+		document.getElementById("sessioninfo0").innerHTML = messageWelcome;
+		//document.getElementById("sessioninfo1").innerHTML = "";
+		document.getElementById("sessioninfo2").innerHTML = messageProfilePicture;
+	}
+
+	$("#lang1")[0].className = "language";
+	$("#lang2")[0].className = "language";
+	$("#lang3")[0].className = "language";
+	$("#lang4")[0].className = "language";
+	$("#lang5")[0].className = "language";
+	$("#lang6")[0].className = "language";
+	$("#lang7")[0].className = "language";
+	$("#lang8")[0].className = "language";
+	if(lang != -1)
+	{
+		$("#lang" + lang)[0].className = "language_sel";
+		defaultLang = lang;
+	}
+}
+
+function turnOffAll()
+{
+	$("#tab6")[0].style.display = "none";
+	$("#tab6_2")[0].style.display = "none";
+	$("#tab6_3")[0].style.display = "none";
+	$("#tab6_4")[0].style.display = "none";
+	$("#tab6_5")[0].style.display = "none";
+	$("#tab6_6")[0].style.display = "none";	
+	$("#tab6_7")[0].style.display = "none";	
+	$("#tab6_8")[0].style.display = "none";	
+	$("#tab6_9")[0].style.display = "none";	
+}
+
+function doHelper(param)
+{
+	turnOffAll();
+	switch(param)
+	{
+		case 1:
+			$("#tab6_2")[0].style.display = "block";
+			break;
+		case 2:
+			$("#tab6_3")[0].style.display = "block";
+			break;
+		case 3:
+			$("#tab6_4")[0].style.display = "block";
+			break;
+		case 4:
+			$("#tab6_6")[0].style.display = "block";
+			break;
+		case 7:
+			$("#tab6_7")[0].style.display = "block";
+			break;
+		case 8:
+			$("#tab6_8")[0].style.display = "block";
+			break;
+		case 9:
+			$("#tab6_9")[0].style.display = "block";
+			break;
+		case 5:
+			$("#tab6_5")[0].style.display = "block";
+			break;
+		case 0:
+			$("#tab6")[0].style.display = "block";
+			break;
+	}
+}
+
+function handleTouchStart(event, btn)
+{
+	moving = true;
+	diff = 0;
+	oldX = -1;
+	oldY = -1;
+
+	downBtn = btn;
+}
+
+var stop = -1;
+function handleTouchMove(event)
+{
+	if(!moving)
+	{
+		return false;
+	}
+
+	event.stopPropagation();
+	event.preventDefault();
+	event.handled = true;
+
+	if(downBtn == "home_smallhnd" || downBtn == "boiler_smallhnd")
+	{
+		var l1 = event.changedTouches[0].pageX - 183;
+		var l2 = event.changedTouches[0].pageY - 273;
+		var angle = Math.round(Math.atan2(l2, l1) * (180 / Math.PI), 2);
+		//document.title = angle+"::"+(angle>135?(angle-180-225):angle-45);
+		setAngle(angle,1);
+		if(angle > 45 && angle < 135)
+		{
+			if(stop != -1)
+			{
+				angle = stop;
+				setAngle(angle,1);
+			} else {
+				if(angle < 90)
+				{
+					angle = 45;
+					setAngle(angle,1);
+				} else {
+					angle = 135;
+					setAngle(angle,1);
+				}
+				stop = angle;
+			}
+		} else {
+			if(stop == 135 && angle < 135)
+			{
+				return;
+			}
+
+			if(stop == 45 && (angle > 45 || angle < 0))
+			{
+				return;
+			}
+
+			stop = -1;
+		}
+		//$("#title")[0].innerHTML = angle;
+		//$("#smallhnd1")[0].style.left = (151 - (Math.sin((angle - 90) * Math.PI / 180) * 113)) + "px"; // ""; // 53
+		//$("#smallhnd1")[0].style.top = (171 + (Math.cos((angle - 90) * Math.PI / 180) * 113)) + "px"; // ""; // 53
+		//setAngleValue(angle - 90, 1);
+
+		clearInterval(globalInterval);
+		globalInterval = setTimeout("hideYesNoNow(true)",7000);
+		return;
+	}
+
+	if(oldX == -1)
+	{
+		oldX = event.changedTouches[0].pageX;
+	}
+
+	diff += event.changedTouches[0].pageX - oldX;
+	oldX = event.changedTouches[0].pageX;
+
+	if(diff < -20)
+	{
+		slideItemTo(-1);
+		moving = false;
+		oldX = -1;
+	}
+
+	if(diff > 20)
+	{
+		slideItemTo(+1);
+		moving = false;
+		oldX = -1;
+	}
+}
+
+function setItemPosition(item, pos, cap)
+{
+	if(item == "boilermodech")
+	{
+		if(btnPosBoilerOnOff == -1)
+		{
+			return;
+		}
+
+		switch(pos)
+		{
+			case 0:
+				setAngle(angBoiler1[btnPosBoiler+ 1],1);
+				$("#boilermodech")[0].style.left = "8%";
+				$("#optbtn1")[0].className = "btnopt1sel";
+				$("#optbtn2")[0].className = "btnopt2";
+				$("#optbtn3")[0].className = "btnopt3";
+				$("#optbtn4")[0].className = "btnopt4";
+
+				var tmp = btnPosBoilerMode;
+				btnPosBoilerMode = 0;
+				btnPosBoilerMode = tmp;
+				selectLang(-1);
+				break;
+			case 1:
+				setAngle(angBoiler2[btnPosBoiler+ 1],1);
+				$("#boilermodech")[0].style.left = "31%";
+				$("#optbtn1")[0].className = "btnopt1";
+				$("#optbtn2")[0].className = "btnopt2sel";
+				$("#optbtn3")[0].className = "btnopt3";
+				$("#optbtn4")[0].className = "btnopt4";
+
+				var tmp = btnPosBoilerMode;
+				btnPosBoilerMode = 1;
+				btnPosBoilerMode = tmp;
+				selectLang(-1);
+				break;
+			case 2:
+				setAngle(angBoiler3[btnPosBoiler+ 1],1);
+				$("#boilermodech")[0].style.left = "54%";
+				$("#optbtn1")[0].className = "btnopt1";
+				$("#optbtn2")[0].className = "btnopt2";
+				$("#optbtn3")[0].className = "btnopt3sel";
+				$("#optbtn4")[0].className = "btnopt4";
+
+				var tmp = btnPosBoilerMode;
+				btnPosBoilerMode = 2;
+				btnPosBoilerMode = tmp;
+				selectLang(-1);
+				break;
+			case 3:
+				setAngle(angBoiler4[btnPosBoiler+ 1],1);
+				$("#boilermodech")[0].style.left = "77%";
+				$("#optbtn1")[0].className = "btnopt1";
+				$("#optbtn2")[0].className = "btnopt2";
+				$("#optbtn3")[0].className = "btnopt3";
+				$("#optbtn4")[0].className = "btnopt4sel";
+
+				var tmp = btnPosBoilerMode;
+				btnPosBoilerMode = 3;
+				btnPosBoilerMode = tmp;
+				selectLang(-1);
+				break;
+		}
+		return;
+	}
+
+	switch(pos)
+	{
+		case -1: 
+			$("#"+ item)[0].style.left = "6.1vw";
+			$("#capl"+ cap)[0].className = "capl" + cap + "active";
+			$("#capm"+ cap)[0].className = "capm" + cap;
+			$("#capr"+ cap)[0].className = "capr" + cap;
+			
+			switch(cap)
+			{
+				case 1:
+					//$("#deg1")[0].innerHTML = angleToDegree(angHome1) + "<sup style='font-size:40px'>o</sup>";
+					setAngle(angHome1,1);
+					break;
+				case 2:
+					$("#capl"+ cap)[0].style.opacity = "1";
+					$("#capm"+ cap)[0].style.opacity = "0.25";
+					$("#capr"+ cap)[0].style.opacity = "0.25";
+
+					switch(btnPosBoilerMode)
+					{
+						case 0:
+							setAngle(angBoiler1[btnPosBoiler + 1],1);
+							break;
+						case 1:
+							setAngle(angBoiler2[btnPosBoiler + 1],1);
+							break;
+						case 2:
+							setAngle(angBoiler3[btnPosBoiler + 1],1);
+							break;
+						case 3:
+							setAngle(angBoiler4[btnPosBoiler + 1],1);
+							break;
+					}
+					break;
+			}
+			break;
+		case 0: 
+			$("#"+ item)[0].style.left = "31.5vw";
+			$("#capl"+ cap)[0].className = "capl" + cap;
+			$("#capm"+ cap)[0].className = "capm" + cap + "active";
+			$("#capr"+ cap)[0].className = "capr" + cap;
+			
+			switch(cap)
+			{
+				case 1:
+					//$("#deg1")[0].innerHTML = angleToDegree(angHome2) + "<sup style='font-size:40px'>o</sup>";
+					//alert("2: " + angHome2);
+					setAngle(angHome2,1);
+					break;
+				case 2:
+					$("#capl"+ cap)[0].style.opacity = "0.25";
+					$("#capm"+ cap)[0].style.opacity = "1";
+					$("#capr"+ cap)[0].style.opacity = "0.25";
+
+					switch(btnPosBoilerMode)
+					{
+						case 0:
+							setAngle(angBoiler1[btnPosBoiler + 1],1);
+							break;
+						case 1:
+							setAngle(angBoiler2[btnPosBoiler + 1],1);
+							break;
+						case 2:
+							setAngle(angBoiler3[btnPosBoiler + 1],1);
+							break;
+						case 3:
+							setAngle(angBoiler4[btnPosBoiler + 1],1);
+							break;
+					}
+					break;
+			}
+			break;
+		case +1: 
+			$("#"+ item)[0].style.left = "56.9vw";
+			$("#capl"+ cap)[0].className = "capl" + cap;
+			$("#capm"+ cap)[0].className = "capm" + cap;
+			$("#capr"+ cap)[0].className = "capr" + cap + "active";
+			
+			switch(cap)
+			{
+				case 1:
+					//$("#deg1")[0].innerHTML = angleToDegree(angHome3) + "<sup style='font-size:40px'>o</sup>";
+					setAngle(angHome3,1);
+					break;
+				case 2:
+					$("#capl"+ cap)[0].style.opacity = "0.25";
+					$("#capm"+ cap)[0].style.opacity = "0.25";
+					$("#capr"+ cap)[0].style.opacity = "1";
+
+					switch(btnPosBoilerMode)
+					{
+						case 0:
+							setAngle(angBoiler1[btnPosBoiler + 1],1);
+							break;
+						case 1:
+							setAngle(angBoiler2[btnPosBoiler + 1],1);
+							break;
+						case 2:
+							setAngle(angBoiler3[btnPosBoiler + 1],1);
+							break;
+						case 3:
+							setAngle(angBoiler4[btnPosBoiler + 1],1);
+							break;
+					}
+					break;
+			}
+			break;
+	}
+}
+
+var globalItem = "";
+var globalValue = "";
+var globalInterval;
+var canChange = true;
+var loggedIn = false;
+var canWarnAboutFuel = true;
+
+function displayYesNo(item, value)
+{
+	if(canChange)
+	{
+		globalItem = item;
+		globalValue = value;
+		canChange = false;
+	}
+
+	$("#yes1")[0].style.opacity = "1";
+	$("#yes2")[0].style.opacity = "1";
+	$("#no1")[0].style.opacity = "1";
+	$("#no2")[0].style.opacity = "1";
+	$("#chamberpop1")[0].style.display = "block";
+	setTimeout('$("#chamberpop1")[0].style.opacity = "1"', 10);
+	$("#chamberpop2")[0].style.display = "block";
+	setTimeout('$("#chamberpop2")[0].style.opacity = "1"', 10);
+	$("#smallhnd1")[0].style.display = "block";
+	setTimeout('$("#smallhnd1")[0].style.opacity = "1"', 10);
+	$("#smallhnd2")[0].style.display = "block";
+	setTimeout('$("#smallhnd2")[0].style.opacity = "1"', 10);
+
+	clearInterval(globalInterval);
+	globalInterval = setTimeout("hideYesNoNow(true)",7000);
+}
+
+function convertAngle(angle)
+{
+	angle = 135 - angle;
+	if(angle <= 0)
+	{
+		angle = angle + 45;
+	}
+
+	if(angle < 90)
+	{
+		angle = angle + 315;
+	}
+	
+	angle -= 90;
+	angle = Math.abs(angle - 270);
+
+	return angleToDegree(angle);
+}
+
+function hideYesNoNow(cancel)
+{
+	$("#yes1")[0].style.opacity = "0";
+	$("#yes2")[0].style.opacity = "0";
+	$("#no1")[0].style.opacity = "0";
+	$("#no2")[0].style.opacity = "0";
+	$("#chamberpop1")[0].style.opacity = "0";
+	setTimeout('$("#chamberpop1")[0].style.display = "none";', 310);
+	$("#chamberpop2")[0].style.opacity = "0";
+	setTimeout('$("#chamberpop2")[0].style.display = "none";', 310);
+	$("#smallhnd1")[0].style.opacity = "0";
+	setTimeout('$("#smallhnd1")[0].style.display = "none";', 310);
+	$("#smallhnd2")[0].style.opacity = "0";
+	setTimeout('$("#smallhnd2")[0].style.display = "none";', 310);
+
+	canChange = true;
+	clearInterval(globalInterval);
+	//document.title = globalItem;
+	switch(cancel)
+	{
+		case true:
+			// back to original position
+			switch(globalItem)
+			{
+				case "home_big":
+					//alert(globalValue);
+					setItemPosition("button1", globalValue, 1);
+					btnPosHome = globalValue;
+					break;
+				case "boiler_big":
+					btnPosBoiler = globalValue;
+					setItemPosition("button2", globalValue, 2);
+					break;
+				case "boiler_mode":
+					switch(btnPosBoilerMode)
+					{
+						case 0:
+							setAngle(angBoiler1[btnPosBoiler + 1],1);
+							break;
+						case 1:
+							setAngle(angBoiler2[btnPosBoiler + 1],1);
+							break;
+						case 2:
+							setAngle(angBoiler3[btnPosBoiler + 1],1);
+							break;
+						case 3:
+							setAngle(angBoiler4[btnPosBoiler + 1],1);
+							break;
+					}
+
+					break;
+			}
+
+			break;
+		case false:
+			// record values
+			switch(globalItem)
+			{
+				case "home_big":
+					switch(btnPosHome)
+					{
+						case -1:
+							angHome1 = angleDefault;
+							break;
+						case 0:
+							angHome2 = angleDefault;
+							break;
+						case +1:
+							angHome3 = angleDefault;
+							break;
+					}
+
+					var message = getMessageForDefaultLang(1);
+					$("#conn1")[0].style.display = "block";
+					$("#conn2")[0].style.display = "block";
+					$("#conn1e")[0].style.display = "none";
+					$("#conn2e")[0].style.display = "none";
+					
+					sendValuesToDevice();
+					/*
+					makeAJAXRequest("includes/doset.php?mode=0&value1="+ convertAngle(angHome1) +"&value2="+ convertAngle(angHome2) +"&value3="+ convertAngle(angHome3) +"&submode=" + btnPosHome + "&message=" + message, function(f) {
+						//$("#boilerSwitch")[0].style.opacity = "1";
+						$("#conn1")[0].style.display = "none";
+						$("#conn2")[0].style.display = "none";
+						
+						$("#btminfo")[0].innerHTML = f;
+					}, function (f) {
+						$("#conn1")[0].style.display = "none";
+						$("#conn2")[0].style.display = "none";
+						$("#conn1e")[0].style.display = "block";
+						$("#conn2e")[0].style.display = "block";
+					});*/
+
+					break;
+				case "boilermodech":
+				case "boiler_mode":
+				case "boiler_big":
+					switch(btnPosBoilerMode)
+					{
+						case 0:
+							angBoiler1[btnPosBoiler + 1] = angleDefault;
+							break;
+						case 1:
+							angBoiler2[btnPosBoiler + 1] = angleDefault;
+							break;
+						case 2:
+							angBoiler3[btnPosBoiler + 1] = angleDefault;
+							break;
+						case 3:
+							angBoiler4[btnPosBoiler + 1] = angleDefault;
+							break;
+					}
+
+					var message = getMessageForDefaultLang(2);
+					$("#conn1")[0].style.display = "block";
+					$("#conn2")[0].style.display = "block";
+					$("#conn1e")[0].style.display = "none";
+					$("#conn2e")[0].style.display = "none";
+
+					sendValuesToDevice();
+					/*
+					makeAJAXRequest("includes/doset.php?mode=1&v1_1="+  +"&v2_1="+  +"&v3_1="+  +"&v4_1="+  +"&v1_2="+  +"&v2_2="+  +"&v3_2="+  +"&v4_2="+  +"&v1_3="+  +"&v2_3="+  +"&v3_3="+  +"&v4_3="+  +"&submode="+  + "&message=" + message, function(f) {
+						//$("#boilerSwitch")[0].style.opacity = "1";
+						$("#conn1")[0].style.display = "none";
+						$("#conn2")[0].style.display = "none";
+
+						$("#btminfo")[0].innerHTML = f;
+					}, function (f) {
+						$("#conn1")[0].style.display = "none";
+						$("#conn2")[0].style.display = "none";
+						$("#conn1e")[0].style.display = "block";
+						$("#conn2e")[0].style.display = "block";
+					});*/
+
+					break;
+			}
+
+			break;
+	}
+
+	downBtn = "";
+}
+
+function convertBoilerVal(angle,type)
+{
+	angle = 135 - angle;
+	if(angle <= 0)
+	{
+		angle = angle + 45;
+	}
+
+	if(angle < 90)
+	{
+		angle = angle + 315;
+	}
+	
+	angle -= 90;
+	angle = Math.abs(angle - 270);
+
+	var val = 0;
+	switch(type)
+	{
+		case 0:
+			val = (Math.round(11 / 270 * angle) + 1);
+			break;
+		case 1:
+			val = Math.floor(parseFloat((55 / 270 * angle) + 35));
+			break;
+		case 2:
+			val = Math.round((57 / 270 * angle) + 3);
+			break;
+		case 3:
+			val = Math.round((597 / 270 * angle) + 3);
+			break;
+	}
+
+	return val;
+}
+
+function slideItemTo(side)
+{
+	switch(downBtn)
+	{
+		case "home_smallhnd":
+			break;
+		case "home_big":
+			displayYesNo("home_big", btnPosHome, null, null);
+
+			btnPosHome = Math.max(Math.min(btnPosHome + side, 1), -1);
+			setItemPosition("button1", btnPosHome, 1);
+			break;
+		case "boiler_big":
+			if(btnPosBoilerOnOff == -1)
+			{
+				return;
+			}
+
+			displayYesNo("boiler_big",btnPosBoiler,btnPosBoilerMode,angleDefault);
+
+			btnPosBoiler = Math.max(Math.min(btnPosBoiler + side, 1), -1);
+			switch(btnPosBoilerMode)
+			{
+				case 0:
+					setAngle(angBoiler1[btnPosBoiler + 1],1);
+					break;
+				case 1:
+					setAngle(angBoiler2[btnPosBoiler + 1],1);
+					break;
+				case 2:
+					setAngle(angBoiler3[btnPosBoiler + 1],1);
+					break;
+				case 3:
+					setAngle(angBoiler4[btnPosBoiler + 1],1);
+					break;
+			}
+			setItemPosition("button2", btnPosBoiler, 2);
+			break;
+		case "boiler_mode":
+			//displayYesNo("boilermodech",btnPosBoiler,btnPosBoilerMode,angleDefault);
+
+			btnPosBoilerMode = Math.max(Math.min(btnPosBoilerMode + side, 3), 0);
+			setItemPosition("boilermodech", btnPosBoilerMode, 0);
+			break;
+		case "boiler_onoff":
+			btnPosBoilerOnOff = side;
+			$("#conn1")[0].style.display = "block";
+			$("#conn2")[0].style.display = "block";
+			$("#conn1e")[0].style.display = "none";
+			$("#conn2e")[0].style.display = "none";
+			//$("#boilerSwitch")[0].style.opacity = "0.35";
+
+			switch(side)
+			{
+				case 0:
+					turnBoilerOff();
+					if(canSave)
+					{
+						sendValuesToDevice();
+						/*var message = getMessageForDefaultLang(30);
+						makeAJAXRequest("includes/doset.php?mode=2&value=0&message=" + message, function(f) {
+							$("#conn1")[0].style.display = "none";
+							$("#conn2")[0].style.display = "none";
+							//$("#boilerSwitch")[0].style.opacity = "1";
+
+							$("#btminfo")[0].innerHTML = f;
+							//alert(f);
+						}, function (f) {
+							$("#conn1")[0].style.display = "none";
+							$("#conn2")[0].style.display = "none";
+							$("#conn1e")[0].style.display = "block";
+							$("#conn2e")[0].style.display = "block";
+						});*/
+					}
+
+					break
+				case +1:
+					turnBoilerOn();
+					if(canSave)
+					{
+						sendValuesToDevice();
+						/*var message = getMessageForDefaultLang(31);
+						makeAJAXRequest("includes/doset.php?mode=2&value=1&message=" + message, function(f) {
+							//alert(f);
+							$("#conn1")[0].style.display = "none";
+							$("#conn2")[0].style.display = "none";
+							//$("#boilerSwitch")[0].style.opacity = "1";
+
+							$("#btminfo")[0].innerHTML = f;
+						}, function (f) {
+							$("#conn1")[0].style.display = "none";
+							$("#conn2")[0].style.display = "none";
+							$("#conn1e")[0].style.display = "block";
+							$("#conn2e")[0].style.display = "block";
+						});*/
+					}
+
+					break
+			}
+			break;
+	}
+}
+
+function turnBoilerOff()
+{
+	$("#boilerSwitchOn")[0].style.opacity="0";
+	$("#boilerSwitch")[0].style.left="11px";
+	$("#button2")[0].style.opacity = "0.3";
+	$("#chamber2")[0].style.opacity = "0.3";
+	$("#deg2")[0].style.opacity = "0.7";
+	$("#dispname")[0].style.opacity = "0.3";
+	
+	$("#optbtn1")[0].className = "btnopt1";
+	$("#optbtn2")[0].className = "btnopt2";
+	$("#optbtn3")[0].className = "btnopt3";
+	$("#optbtn4")[0].className = "btnopt4";
+
+	switch(btnPosBoiler)
+	{
+		case -1:
+			$("#capl2")[0].style.opacity = "0.3";
+			break;
+		case 0:
+			$("#capm2")[0].style.opacity = "0.3";
+			break;
+		case +1:
+			$("#capr2")[0].style.opacity = "0.3";
+			break;
+	}
+}
+
+function turnBoilerOn()
+{
+	$("#boilerSwitchOn")[0].style.opacity="1";
+	$("#boilerSwitch")[0].style.left="36px";
+	$("#button2")[0].style.opacity = "1";
+	$("#chamber2")[0].style.opacity = "1";
+	$("#deg2")[0].style.opacity = "1";
+	$("#dispname")[0].style.opacity = "1";
+	
+	$("#boilermodech")[0].style.opacity = "1";
+	$("#optbtn1")[0].className = btnPosBoilerMode == 0 ? "btnopt1sel" : "btnopt1";
+	$("#optbtn2")[0].className = btnPosBoilerMode == 1 ? "btnopt2sel" : "btnopt2";
+	$("#optbtn3")[0].className = btnPosBoilerMode == 2 ? "btnopt3sel" : "btnopt3";
+	$("#optbtn4")[0].className = btnPosBoilerMode == 3 ? "btnopt4sel" : "btnopt4";
+	
+	switch(btnPosBoiler)
+	{
+		case -1:
+			$("#capl2")[0].style.opacity = "1";
+			break;
+		case 0:
+			$("#capm2")[0].style.opacity = "1";
+			break;
+		case +1:
+			$("#capr2")[0].style.opacity = "1";
+			break;
+	}
+}
+
+function handleTouchEnd(event)
+{
+	oldX = -1;
+	oldY = -1;
+	moving = false;
+}
+
+function doOpenMenu()
+{
+	$("#leftmenu")[0].style.left = "0px";
+	$("#leftmenubg")[0].style.display = "block";
+	$("#leftmenubg")[0].style.opacity = "0";
+	$("#leftmenubg")[0].style.transition = "all 0.3s ease-out";
+
+	setTimeout('$("#leftmenubg")[0].style.opacity = "1"',20);
+}
+
+function doCloseMenu()
+{
+	$("#leftmenu")[0].style.left = "-70px";
+	$("#leftmenubg")[0].style.opacity = "0";
+	setTimeout('$("#leftmenubg")[0].style.transition = ""',300);
+	setTimeout('$("#leftmenubg")[0].style.display = "none";',310);
+}
+
+function switchToTab(param)
+{
+	clearInterval(retryInterval);
+
+	turnOffAll();
+	$("#tab1").css("display", "none");
+	$("#tab2").css("display", "none");
+	$("#tab3").css("display", "none");
+	$("#tab3s").css("display", "none");
+	$("#tab3t").css("display", "none");
+	$("#tab4").css("display", "none");
+	$("#tab4b").css("display", "none");
+	$("#tab4p").css("display", "none");
+	$("#tab4u").css("display", "none");
+	$("#tab4a").css("display", "none");
+	$("#tab4a0").css("display", "none");
+	$("#tab4a1").css("display", "none");
+	$("#tab4r").css("display", "none");
+	$("#tab5").css("display", "none");
+	$("#tab6").css("display", "none");
+	$("#tab7").css("display", "none");
+	$("#navbtn1")[0].className = "navbtn1_reg";
+	$("#navbtn2")[0].className = "navbtn2_reg";
+	$("#navbtn3")[0].className = "navbtn3_reg";
+	$("#navbtn5")[0].className = "navbtn5_reg";
+	$("#navbtn6")[0].className = "navbtn6_reg";
+	$("#navbtn7")[0].className = "navbtn7_reg";
+	if(param != 4)
+	{
+		$("#navbtn"+ param)[0].className = "navbtn"+param+"_sel";
+	}
+
+	if(param == 3 && serviceUser)
+	{
+		param = "3s";
+	}
+
+	$("#tab"+param).css("display", "block");
+	setTimeout("doCloseMenu();",300);
+}
+
+function degreeToAngle(degree)
+{
+	var val = Math.round(15 / 35 * (degree - 15));
+	return val;
+}
+
+function angleToBoilerVal(angle)
+{
+	var val;
+	switch(btnPosBoilerMode)
+	{
+		case 0:
+			val = (Math.round(12 / 270 * angle));
+			//angBoiler1 = angle;
+			break;
+		case 1:
+			val = Math.floor(parseFloat((55 / 270 * angle) + 35))+ "<sup style='font-size:40px'>o</sup>";
+
+			//angBoiler2 = angle;
+			break;
+		case 2:
+			val = Math.round((57 / 270 * angle) + 3) + "<span style='color:silver'>sn</span>";
+			//angBoiler3 = angle;
+			break;
+		case 3:
+			val = Math.round((597 / 270 * angle) + 3) + "<span style='color:silver'>sn</span>";
+			//angBoiler4 = angle;
+			break;
+	}
+
+	return val;
+}
+
+function angleToDegree(angle)
+{
+	var val = parseFloat((20 / 270 * angle) + 15).toFixed(1);
+	if(isNaN(val))
+	{
+		alert(angle);
+	}
+
+	if(val - Math.floor(val) < 0.5)
+	{
+		val = Math.floor(val)+ ".0";
+	} else {
+		val = Math.floor(val)+ ".5";
+	}
+
+	return val;
+}
+
+function setAngle(angle,attr)
+{
+	switch(attr)
+	{
+		case 1:
+			// room temperature
+			// ranged between 15-35
+			//console.log("Angle before the process is ", angle);
+			angleDefault = angle;
+			setAngleValue(angle - 90, 1);
+
+			angle = 135 - angle;
+			if(angle <= 0)
+			{
+				angle = angle + 45;
+			}
+
+			if(angle < 90)
+			{
+				angle = angle + 315;
+			}
+			
+			angle -= 90;
+			angle = Math.abs(angle - 270);
+
+			switch(downBtn)
+			{
+				case "boiler_smallhnd":
+				case "boiler_mode":
+				case "boiler_big":
+					$("#deg2")[0].innerHTML = angleToBoilerVal(angle);
+					//document.title = "Angle: " + angle+ ", val: "+ $("#deg2")[0].innerHTML;
+					break;
+				default:
+					$("#deg1")[0].innerHTML = angleToDegree(angle) + "<sup style='font-size:40px'>o</sup>";
+					break;
+			}
+			
+			break;
+	}
+}
+
+function setAngleValue(angle,attr)
+{
+	switch(attr)
+	{
+		case 1:
+			//document.title = "Angle Value: "+ angle;
+			switch(downBtn)
+			{
+				case "boiler_smallhnd":
+				case "boiler_mode":
+				case "boiler_big":
+					$("#smallhnd2")[0].style.left = (40 - (Math.sin(angle * Math.PI / 180) * 30)) + "vw";
+					$("#smallhnd2")[0].style.top = (45 + (Math.cos(angle * Math.PI / 180) * 30)) + "vw";
+					break;
+				default:
+					$("#smallhnd1")[0].style.left = (40 - (Math.sin(angle * Math.PI / 180) * 30)) + "vw";
+					$("#smallhnd1")[0].style.top = (45 + (Math.cos(angle * Math.PI / 180) * 30)) + "vw";
+					break;
+			}
+			break;
+	}
+}
+
+var errormsgDisappear;
+function errorMessage(msg,top)
+{
+	$("#errormsg")[0].style.top = top;
+	$("#errormsg")[0].style.display = "block";
+	$("#errormsg")[0].style.opacity = "1";
+	$("#errormsginside")[0].innerHTML = msg;
+
+	clearTimeout(errormsgDisappear);
+	errormsgDisappear = setTimeout('$("#errormsg")[0].style.opacity = "0";setTimeout(\'$("#errormsg")[0].style.display = "none";\',300)', 4700);
+}
+
+function convertDegree(angle, base, total)
+{
+	var v = -225 + (angle - base) * (270 / (total - base));
+	if(v < -180)
+	{
+		v = 360 + v;
+	}
+
+	return v;
+}
+
+function doget()
+{
+	//setTimeout('doget()',4000);
+
+	if(!canChange)
+	{
+		return;
+	}
+
+	$("#conn1")[0].style.display = "block";
+	$("#conn2")[0].style.display = "block";
+	$("#conn1e")[0].style.display = "none";
+	$("#conn2e")[0].style.display = "none";
+	//$("#boilerSwitch")[0].style.opacity = "0.35";
+	if(window.sktb != null)
+	{
+		window.sktb.processOfflineConnection();
+	}
+	/*makeAJAXRequest("includes/doget.php", function(f) {
+		//$("#gaugep")[0].style.transform = "rotate(45deg)";
+
+		processParams(f);
+
+		$("#conn1")[0].style.display = "none";
+		$("#conn2")[0].style.display = "none";
+	}, function (f) {
+		$("#conn1")[0].style.display = "none";
+		$("#conn2")[0].style.display = "none";
+		$("#conn1e")[0].style.display = "block";
+		$("#conn2e")[0].style.display = "block";
+	});*/
+}
+
+var confirmInterval;
+var confirmRemaining = 0;
+var animateDirection = -1;
+var animateInterval = -1;
+var setupRetryTime = 10;
+var retryInterval = -1;
+var lastSetupParam = -1;
+function docancelsetup()
+{
+	if(!confirm("Kurulumu yarıda bırakıp çıkmak istediğinizden emin misiniz?"))
+	{
+		return;
+	}
+
+	doclearsetup();
+}
+
+function doclearsetup()
+{
+	$("#tab3t")[0].style.display = "none";
+	$("#tab3t2")[0].style.display = "none";
+	$("#tab3s")[0].style.display = "block";
+}
+function doGetPosition()
+{
+	$("#servicer4")[0].innerHTML = "<span style='color:aqua'>Bekleniyor...</span>";
+	try
+	{
+		setTimeout('navigator.geolocation.getCurrentPosition(showPosition,errorPosition,{enableHighAccuracy:true,timeout:5000,maximumAge:0});',500);
+	} catch(err)
+	{
+		alert("Konum isteği gerçekleşemedi");
+	}	
+}
+
+function errorPosition(err)
+{
+	//alert(err.code + " " + err.message);
+	$("#servicer4")[0].innerHTML = "<span style='color:red'>Konum bilgisi alınamadı<br>"+ err.message +"</span><div style='width:100%;height:5px'></div><a href=javascript:doGetPosition() style='text-decoration:none'><span style='color:silver'><u>tekrar dene</u></span></a>";
+	$("#setupbtn2_1")[0].className = 'helpbtn helpbtn2';
+	$("#setupbtn2_1")[0].onclick = function() {
+		douseropssvc();
+	}
+}
+
+function showPosition(position) {
+	_latitude = position.coords.latitude;
+	_longitude = position.coords.longitude; 
+	$("#servicer4")[0].innerHTML = "<span style='color:yellow'>"+ _latitude + ", " + _longitude+ "</span>";
+
+	$("#setupbtn2_1")[0].className = 'helpbtn helpbtn2';
+	$("#setupbtn2_1")[0].onclick = function() {
+		douseropssvc();
+	}
+}
+
+function doSetupNext(_deviceSerial)
+{
+	window.sktb.connectBack();
+	//alert(deviceSerial);
+	if(_deviceSerial.indexOf("IDCODE2:") == -1)
+	{
+		_deviceSerial = "";
+		$("#setupbtn1")[0].style.display = "block";
+		$("#serviceprmpt3")[0].innerHTML = "<span style='color:yellow'>Bağlantı sağlanamıyor, cihazınızın bağlantı kipinde olduğundan ve oluşturduğu kablosuz ağa bağlı olduğunuzdan emin oduktan sonra tekrar deneyin</span>";
+
+		$("#connicon")[0].style.opacity = 1;
+		setupRetryTime = 10;
+		retryInterval = setInterval("countDownForSetupRetry()", 1000);
+		clearInterval(animateInterval);
+		animateInterval = -1;
+	} else {
+		_deviceSerial = _deviceSerial.substr(8).trim();
+		$("#setupbtn1")[0].style.display = "block";
+		$("#tab3t")[0].style.display = "none";
+		$("#tab3t2")[0].style.display = "block";
+		$("#servicer1")[0].innerHTML = "Cihaz kimliği: <span style='color:yellow' id='deviceSerial'>"+ _deviceSerial +"</span>";
+	}
+
+	deviceSerial = "tife6270" + _deviceSerial;
+	doGetPosition();
+}
+
+function dosetup(param)
+{
+	$("#serviceprmpt3")[0].innerHTML = "Cihazla bağlantı kurulmaya çalışıyor...";
+	$("#setupbtn1")[0].style.display = "none";
+	$("#setupbtn1")[0].innerHTML = "Tekrar Dene (10)";
+	$("#tab3s")[0].style.display = "none";
+	$("#tab3t")[0].style.display = "block";
+
+	setupRetryTime = 10;
+	animateDirection = -1;
+	lastSetupParam = param;
+	clearInterval(retryInterval);
+	if(animateInterval == -1)
+	{
+		animateInterval = setInterval("animateConnToNext();", 1050);
+	}
+
+	$("#setupbtn2_1")[0].className = 'helpbtn helpbtn2 opacity05';
+	$("#setupbtn2_1")[0].onclick = function() {
+	}
+
+	if(window.sktb != null)
+	{
+		window.sktb.setupService('tife6270');
+	} else {
+		//alert("No interface is available for TCP communication");
+		setTimeout(function() {
+			//result = result.substr(8).trim();
+			$("#setupbtn1")[0].style.display = "block";
+			$("#tab3t")[0].style.display = "none";
+			$("#tab3t2")[0].style.display = "block";
+			$("#servicer1")[0].innerHTML = "Cihaz kimliği: <span style='color:yellow'>112340236458</span>";
+
+			doGetPosition();
+		}, 3000);
+	}
+}
+
+function countDownForSetupRetry()
+{
+	if(--setupRetryTime <= 0)
+	{
+		dosetup(lastSetupParam);
+		return;
+	}
+
+	$("#setupbtn1")[0].innerHTML = "Tekrar Dene ("+ setupRetryTime +")";
+}
+
+function animateConnToNext()
+{
+	switch(animateDirection)
+	{
+		case -1:
+			$("#connicon")[0].style.opacity = 0;
+			break;
+		case 1:
+			$("#connicon")[0].style.opacity = 1;
+			break;
+	}
+
+	animateDirection *= -1;
+}
+
+function doswitchToLogin()
+{
+	document.getElementById('tab4b').style.display='none';
+	document.getElementById('tab4').style.display='block';
+}
+
+function init()
+{
+	$("#navbtn1")[0].style.display = "block";
+	$("#navbtn2")[0].style.display = "block";
+	$("#navbtn7")[0].style.display = "block";
+	$("#navbtn3")[0].style.display = "none";
+	
+	alert("Offline modda çalışıyorsunuz. Internet bağlantısı sağlandığında otomatik olarak online moda geçeceksiniz. Offline moddayken tüm cihaz özellikleri kullanılamayabilir");
+	if(window.sktb != null)
+	{
+		window.sktb.initOfflineMode();
+		getIntervalVar = setInterval("doget()", 7000);
+		doget();
+	}
+}
+
+function handleFuelSliderStart(event)
+{
+	fuel_moving = true;
+	fuel_oldX = -1;
+	fuel_oldY = -1;
+}
+
+function handleFuelSliderMove(event)
+{
+	if(!fuel_moving)
+	{
+		return false;
+	}
+
+	event.stopPropagation();
+	event.preventDefault();
+	event.handled = true;
+
+	if(oldX == -1)
+	{
+		oldX = event.changedTouches[0].pageX;
+	}
+
+	oldX = event.changedTouches[0].pageX;
+	var downElement = $("#fuelhnd")[0];
+	var parentElement = $("#fuelline")[0];
+	var parentLeft = Math.ceil(document.body.offsetWidth * 0.15);
+	var parentWidth = Math.ceil(document.body.offsetWidth * 0.7);
+	var elementLeft = 0;
+	if(event.changedTouches[0].pageX< parentLeft)
+	{
+		elementLeft = 0;
+		downElement.style.left = parentLeft -(downElement.offsetWidth / 4) + "px";
+	} else if(event.changedTouches[0].pageX  > parentLeft + parentElement.offsetWidth)
+	{
+		elementLeft = parentElement.offsetWidth;
+		downElement.style.left = (parentLeft + parentElement.offsetWidth - (downElement.offsetWidth / 4)) + "px";
+	} else {
+		elementLeft = event.changedTouches[0].pageX - parentLeft;
+		downElement.style.left = (event.changedTouches[0].pageX - (downElement.offsetWidth / 4)) + "px";
+	}
+
+	$("#fuelwarnval1")[0].innerHTML = Math.ceil(10 + 20 * (elementLeft / parentWidth));
+	$("#fuelwarnval2")[0].innerHTML = Math.ceil(10 + 20 * (elementLeft / parentWidth));
+}
+
+function handleFuelSliderEnd(event)
+{
+	fuel_oldX = -1;
+	fuel_oldY = -1;
+	fuel_moving = false;
+
+	// save fuel warning level
+	localStorage.setItem("fuellevel",$("#fuelwarnval1")[0].innerHTML);
+}
+
+function getElementLeft(element)
+{
+	var bodyRect = document.body.getBoundingClientRect();
+    elemRect = element.getBoundingClientRect();
+
+    return elemRect.left - bodyRect.left;
+}
+
+function doTestFuelLevel()
+{
+	if(serviceUser)
+	{
+		return;
+	}
+
+	if(!loggedIn || !canWarnAboutFuel)
+	{
+		if(fuelLevel >= fuelLevelMin)
+		{
+			$("#fuelwicontop")[0].style.display = "none";
+			canWarnAboutFuel = true;
+		}
+
+		return;
+	}
+
+	if(fuelLevel < fuelLevelMin)
+	{
+		$("#fuelwdiv")[0].style.top = "70px";
+		setTimeout('doFadeFuelWarningOut()',7000);
+		$("#fuewlamnt")[0].innerHTML = "<b>%" + fuelLevel + "</b>";
+		$("#fuelwicontop")[0].style.display = "block";
+		canWarnAboutFuel = false;
+	} else {
+		$("#fuelwicontop")[0].style.top = "22px";
+		canWarnAboutFuel = true;
+	}
+
+	//setTimeout("doTestFuelLevel()", 10000);
+}
+
+function displayInfo(message)
+{
+	$("#infodiv")[0].style.top = "70px";
+	setTimeout('doFadeInfoOut()',7000);
+	$("#fuelwdesc2")[0].innerHTML = "<b>" + message + "</b>";
+}
+
+function displayError(code)
+{
+	var message = "Cihaz hata verdi (Kod "+ code +")";
+	switch(code)
+	{
+		case "1":
+			message = "Kazan ısı sensör hatası (Kod 1)";
+			break;
+		case "2":
+			message = "Yakıt bitti (Kod 2)";
+			break;
+		case "3":
+			message = "Yakma hatası (Kod 3)";
+			break;
+		case "4":
+			message = "Aşırı ısı hatası (Kod 4)";
+			break;
+		case "5":
+			message = "Kömür yükleme motoru sıkıştı (Kod 5)";
+			break;
+		case "6":
+			message = "Yükleme bölgesinde aşırı ısınma (Kod 6)";
+			break;
+		case "7":
+			message = "Mekanik termostat hatası (Kod 7)";
+			break;
+		case "-99":
+			message = 'Cihazla bağlantı koptu';
+			break;
+	}
+	
+	$("#errordiv")[0].style.top = "70px";
+	setTimeout('doFadeErrorOut()',7000);
+	$("#fuelwdesc1")[0].innerHTML = "<b>" + message + "</b>";
+}
+
+function doFadeErrorOut()
+{
+	setTimeout('$("#errordiv")[0].style.top = "15px";',10);
+}
+
+function doFadeInfoOut()
+{
+	setTimeout('$("#infodiv")[0].style.top = "15px";',10);
+}
+
+function doFadeErrorOut()
+{
+	setTimeout('$("#errordiv")[0].style.top = "15px";',10);
+}
+
+function doFadeFuelWarningOut()
+{
+	setTimeout('$("#fuelwdiv")[0].style.top = "15px";',10);
+}
+
+function dobackfromregdisp()
+{
+	$("#tab4b")[0].style.display = "none";
+	$("#tab4u")[0].style.display = "block";
+}
+
+function dodetailEdit(id,fullname,detusrphonenr,email)
+{
+	$("#ainp_fullname")[0].value = fullname;
+	$("#ainp_userid")[0].value = detusrphonenr;
+	$("#ainp_email")[0].value = email;
+	doauthUserScreen();
+}
+
+function saveConfirmResponse()
+{
+	canChange = false;
+	clearInterval(confirmInterval);
+	document.getElementById("confirmdlg").innerHTML = '<div style="position:absolute;left:10%;width:80%;top:20%;height:33vh;text-align:center;color:white;font-family:\'Open Sans Light\';font-size:16px">'+
+	'Lütfen bekleyin...<br><center><img src=images/loadingb.gif style="position:relative;top:15px;width:20vw;height:20vw"></center>'+
+	'</div>';
+}
+
+function finishSet(param)
+{
+	console.log("finishSet: "+ param);
+	if(param == "PHN_DS1_ERR")
+	{
+		console.log("Try one more time");
+	} else {
+		clearInterval(setValueInterval);
+		$("#conn1")[0].style.display = "none";
+		$("#conn2")[0].style.display = "none";
+		canChange = true;
+		getIntervalVar = setInterval("doget()", 7000);
+	}
+}
+
+function processParams(params)
+{
+	var s = params.split("/");
+	var btn = downBtn;
+	//console.log(params);
+	if(s.length == 26)
+	{
+		//btnPosHome = s[16];
+		btnPosHome = parseInt(s[16]) - 102;
+		setItemPosition("button1", btnPosHome, 1);
+
+		angHome1 = convertDegree(s[1], 15, 35);
+		if(btnPosHome == -1)
+		{
+			setAngle(angHome1,1);
+		}
+
+		angHome2 = convertDegree(s[2], 15, 35);
+		if(btnPosHome == 0)
+		{
+			setAngle(angHome2,1);
+		}
+
+		angHome3 = convertDegree(s[3], 15, 35);
+		if(btnPosHome == +1)
+		{
+			setAngle(angHome3,1);
+		}
+
+		// btnPosBoiler = s[17];
+		btnPosBoiler = parseInt(s[17]) - 202;
+
+		var a1_1 = convertDegree(s[4],0,12);
+		var a1_2 = convertDegree(s[5],0,12);
+		var a1_3 = convertDegree(s[6],0,12);
+		//console.log("a1_1: "+ s[4]+ " :: " + a1_1 +", a1_2: "+ s[5]+ " :: " + a1_2 + ", a1_1: "+ s[6]+ " :: " + a1_3);
+		
+		var a2_1 = convertDegree(s[7],35,90); 
+		var a2_2 = convertDegree(s[8],35,90);
+		var a2_3 = convertDegree(s[9],35,90);
+		//console.log("a2_1: "+ s[7]+ " :: " + a2_1+ ", a2_2: "+ s[8]+ " :: " + a2_2+ ", a2_3: "+ s[9]+ " :: " + a2_3);
+		
+		var _s12 = (s[12] + "").length > 1 ? (s[12] + "").substr(1) : (s[12] + "");
+		var a3_1 = convertDegree(s[10],3,60); 
+		var a3_2 = convertDegree(s[11],3,60);
+		var a3_3 = convertDegree(_s12,3,60);
+		//console.log("a3_1: "+ s[10]+ " :: " + a3_1+ ", a3_2: "+ s[11]+ " :: " + a3_2+ ", a3_3: "+ _s12+ " :: " + a3_3);
+
+		var a4_1 = convertDegree(s[13],3,600); 
+		var a4_2 = convertDegree(s[14],3,600);
+		var a4_3 = convertDegree(s[15],3,600);
+		//console.log("a4_1: "+ s[13]+ " :: " + a4_1+ ", a4_2: "+ s[14]+ " :: " + a4_2+ ", a4_3: "+ s[15]+ " :: " + a4_3);
+		
+		angBoiler1 = [a1_1, a1_2, a1_3];
+		angBoiler2 = [a2_1, a2_2, a2_3];
+		angBoiler3 = [a3_1, a3_2, a3_3];
+		angBoiler4 = [a4_1, a4_2, a4_3];
+
+		downBtn = "boiler_mode";
+		setItemPosition("button2", btnPosBoiler, 2);
+
+		//console.log("s[6]: ", s[6], ", converted value: ", convertDegree(s[6],35,55));
+		btnPosBoilerOnOff = s[20];
+		downBtn='boiler_onoff';canSave=false;slideItemTo(parseInt(btnPosBoilerOnOff));canSave=true;
+		$("#roomtemp1")[0].innerHTML = s[18] + "<sup style='font-size:3.5vw'>o</sup>";
+		$("#roomtemp2")[0].innerHTML = (parseInt(s[19]) > 99 ? "99" : s[19].substr(1)) + "<sup style='font-size:3.5vw'>o</sup>";
+
+		$("#fuelwarnval1")[0].innerHTML = localStorage.getItem("fuellevel") == null ? 15 : localStorage.getItem("fuellevel");
+		$("#fuelwarnval2")[0].innerHTML = localStorage.getItem("fuellevel") == null ? 15 : localStorage.getItem("fuellevel");
+		fuelLevelMin = parseInt(localStorage.getItem("fuellevel") == null ? 15 : localStorage.getItem("fuellevel"));
+		if(localStorage.getItem("fuellevel") == null)
+		{
+			localStorage.setItem("fuellevel", "15");
+		}
+		fuelLevel = parseInt(localStorage.getItem("fuellevel"));//parseInt(s[21]);
+		$("#degF")[0].innerHTML = fuelLevel;
+		//console.log(s[21], parseFloat(s[21]), parseFloat(s[21])/100*12);
+		$("#gaugeF")[0].className = "gauge"+ (Math.floor(fuelLevel/100*12)) +"_12";
+		var downElement = $("#fuelhnd")[0];
+		var parentLeft = Math.ceil(document.body.offsetWidth * 0.15);
+		var parentWidth = Math.ceil(document.body.offsetWidth * 0.7);
+		downElement.style.left = "calc(" + (15 + parseFloat(fuelLevel - 10) / 20.0 * 70)+ "vw - 4.4vw)";
+		//$("#boilerSwitch")[0].style.opacity = "1";
+
+		doTestFuelLevel();
+	} else {
+		console.log(s.length + " :: "+ params);
+	}
+
+	downBtn = btn;
+	//processParams(f);
+
+	$("#conn1")[0].style.display = "none";
+	$("#conn2")[0].style.display = "none";
+	
+	//setTimeout("doget()", 4000);
+}
+
+function sendValuesToDevice()
+{
+	if(window.sktb != null)
+	{
+		var d = new Date();
+		var date = (d.getDate() < 10 ? ("0" + d.getDate()) : d.getDate()) + "." + ((d.getMonth() + 1) < 10 ? ("0" + (d.getMonth() + 1)) : (d.getMonth() + 1)) + "." + d.getFullYear();
+
+		canChange = false;
+		setValueInterval = setInterval('window.sktb.setOfflineValues("PHN_DS1*/' + convertAngle(angHome1) + '/'+ convertAngle(angHome2) + '/'+ convertAngle(angHome3) + '/' + (102 + btnPosHome) + '/' + (102 + btnPosHome) + '/' + date+ '/' + (d.getHours() + ":"  + d.getMinutes()) + '/' + d.getDay() +'/' + (202 + btnPosBoiler) + '/' + convertBoilerVal(angBoiler1[0],0) + '/' + convertBoilerVal(angBoiler2[0],1) + '/' + convertBoilerVal(angBoiler3[0],2) + '/' + convertBoilerVal(angBoiler4[0],3) + '/' + convertBoilerVal(angBoiler1[1],0) + '/' + convertBoilerVal(angBoiler2[1],1) + '/' + convertBoilerVal(angBoiler3[1],2) + '/' + convertBoilerVal(angBoiler4[1],3) + '/' + convertBoilerVal(angBoiler1[2],0) + '/' + convertBoilerVal(angBoiler2[2],1) + '/' + convertBoilerVal(angBoiler3[2],2) + '/' + convertBoilerVal(angBoiler4[2],3) + '/' + btnPosBoilerOnOff + '/0/0/0/0/0/0/*PHN_DE1");',1000);
+		console.log('PHN_DS1*/' + convertAngle(angHome1) + '/'+ convertAngle(angHome2) + '/'+ convertAngle(angHome3) + '/' + (102 + btnPosHome) + '/' + (102 + btnPosHome) + '/' + date+ '/' + (d.getHours() + ":"  + d.getMinutes()) + '/'+ d.getDay() +'/' + (202 + btnPosBoiler) + '/' + convertBoilerVal(angBoiler1[0],0) + '/' + convertBoilerVal(angBoiler2[0],1) + '/' + convertBoilerVal(angBoiler3[0],2) + '/' + convertBoilerVal(angBoiler4[0],3) + '/' + convertBoilerVal(angBoiler1[1],0) + '/' + convertBoilerVal(angBoiler2[1],1) + '/' + convertBoilerVal(angBoiler3[1],2) + '/' + convertBoilerVal(angBoiler4[1],3) + '/' + convertBoilerVal(angBoiler1[2],0) + '/' + convertBoilerVal(angBoiler2[2],1) + '/' + convertBoilerVal(angBoiler3[2],2) + '/' + convertBoilerVal(angBoiler4[2],3) + '/' + btnPosBoilerOnOff + '/0/0/0/0/0/0/*PHN_DE1');
+		clearInterval(getIntervalVar);
+	}
+}
+</script>
+
+<div style='z-index:9999999;position:absolute;left:0;top:0;width:100vw;height:100vh;background-color:rgba(0,0,0,0.9);display:none' id=confirmdlg>
+	<div style="position:absolute;left:10%;width:80%;top:20%;height:50px;text-align:center;color:white;font-family:'Open Sans Light';font-size:16px">
+	Cihaz servisi sizin kullanıcınızla kurulum yapmak istiyor, onay veriyor musunuz?
+	</div>
+
+	<div style="line-height:40px;position:absolute;left:10%;width:80%;top:100%;height:40px;margin-top:-180px;border:1px solid yellow;text-align:center;color:yellow;background-color:#101010;font-family:'Open Sans';font-size:14px;" id=confirmpryes>
+	Evet, onaylıyorum (60)
+	</div>
+	
+	<div style="line-height:40px;position:absolute;left:10%;width:80%;top:100%;height:40px;margin-top:-130px;border:1px solid yellow;text-align:center;color:olive;background-color:#101010;font-family:'Open Sans';font-size:14px;" id=confirmpryes onclick="saveConfirmResponse()">
+	Hayır, onaylamıyorum
+	</div>
+</div>
+</body>
+</html>
